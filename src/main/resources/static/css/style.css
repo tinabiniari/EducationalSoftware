@@ -1,0 +1,29 @@
+.login-form, .register-form{
+    padding-bottom: 0px !important;
+    background: rgb(248,249,250);
+}
+
+
+
+
+.register-link{
+    text-align: center;
+}
+
+.reg-link-btn{
+    padding: 0px;
+}
+
+.login-label,.register-label{
+    float: left;
+}
+
+.login-input{
+    height: 50px;
+}
+
+.btn-login{
+    border-radius:50px !important;
+    height: 50px;
+
+}

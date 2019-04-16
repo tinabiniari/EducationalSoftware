@@ -2,12 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,45 +26,26 @@
                 <a class="nav-link" href="#">Pricing</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
         </ul>
     </div>
 </nav>
+
 <br>
 <br>
-
-
+<br>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-    <form th:action="@{/login}" method="POST" class="login-form text-center border border-light p-5">
-        <h2 class="h2 mb-4" th:text="Login"></h2>
-        <br/>
-        <label class="login-label" for="email">Email address</label>
-        <input type="text" id="email" name="email"  th:placeholder="Email"
-               class="login-input form-control mb-4" /> <br/>
-        <label class="login-label" for="password">Password</label>
-        <input type="password"  th:placeholder="Password"
-               id="password" name="password" class="login-input form-control mb-4" /> <br />
-
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-        </div>
-        <button class="btn btn-info btn-block my-4 btn-login" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+    <h2>        <span th:utext="${welcomeMessage}"></span>
+    </h2>
 
 
-
-
-    </form>
-
-            <form th:action="@{/registration}" method="get">
-                <p class="register-link">Not a member?
-                    <button class="reg-link-btn btn btn-link" type="Submit">Register</button></p>
-             </form>
-
-        </div>
-    </div>
 </div>
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
