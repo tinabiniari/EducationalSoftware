@@ -17,6 +17,16 @@ public class Course {
     @JoinTable(name = "course_question",joinColumns = @JoinColumn(name = "course_id"),inverseJoinColumns = @JoinColumn(name="question_id"))
     private Question questions;
 
+    private Long moduleId;
+
+    public Long getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(Long moduleId) {
+        this.moduleId = moduleId;
+    }
+
     public Question getQuestions() {
         return questions;
     }

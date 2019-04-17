@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -10,9 +10,30 @@
 
 
 <body>
-<form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
-</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Educational Software</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/modules}">Java Modules</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--<form th:action="@{/}" method="get">-->
+    <!--<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>-->
+<!--</form>-->
 
 <div class="container">
     <div class="row justify-content-center">
@@ -23,48 +44,49 @@
                   role="form">
                 <h2 class="h2 mb-4">Registration Form</h2>
 
-                        <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
-                               class="validation-message"></label>
-                        <input type="text" th:field="*{firstName}" placeholder="Name"
-                               class="form-control" />
+
+                <label class="register-label" for="firstName">Name</label>
+
+                <input type="text" id="firstName" th:field="*{firstName}" placeholder="Name"
+                               class="reg-input form-control mb-4" />
+                <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                       class="validation-message"></label>
+
+                <label class="register-label" for="lastName">Surname</label>
 
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
-                                  class="validation-message"></label>
-                        <input type="text" th:field="*{lastName}"
-                               placeholder="Last Name" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" />
+                        <input id="lastName" type="text" th:field="*{lastName}"
+                               placeholder="Last Name" class="reg-input form-control mb-4" />
+                <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                          class="validation-message"></label>
+
+                <label class="register-label" for="email">Email</label>
+
+                        <input id="email" type="text" th:field="*{email}" placeholder="Email"
+                               class="reg-input form-control mb-4" />
                         <label
                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                             class="validation-message"></label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" />
+
+                <label class="register-label" for="password">Password</label>
+
+                        <input id="password" type="password" th:field="*{password}"
+                               placeholder="Password" class="reg-input form-control mb-4" />
                         <label
                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
+                            class="validation-message"></label><br>
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
-                    </div>
-                </div>
+
+
+                        <button type="submit" class="btn btn-info btn-block my-4 btn-register">Register User</button>
 
                 <span th:utext="${successMessage}"></span>
 
 
+            </form>
+            <form th:action="@{/login}" method="get">
+                <p class="login-link">Already a member?
+                    <button class="login-link-btn btn btn-link" type="Submit">Login</button></p>
             </form>
         </div>
     </div>

@@ -1,6 +1,7 @@
 package com.software.educational.web.controller;
 
 import com.software.educational.data.model.User;
+import com.software.educational.service.ModuleService;
 import com.software.educational.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,9 @@ public class IndexController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ModuleService moduleService;
+
     @ModelAttribute("user")
     User getUser() {
         return new User();
@@ -29,4 +33,5 @@ public class IndexController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
 }

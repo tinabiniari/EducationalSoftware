@@ -20,7 +20,7 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/modules}">Java Modules</a>
+                <a class="nav-link" href="#">Features</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
@@ -36,16 +36,26 @@
 <br>
 <br>
 <div class="container">
-    <h2>        <span th:utext="${welcomeMessage}"></span>
-    </h2>
+<h2>Modules</h2>
+    <table class="table table-bordered ">
 
+
+        <tr th:each="module : ${modules}">
+
+            <td th:text="${module.moduleId}"></td>
+            <td th:text="${module.moduleName}"></td>
+            <td>
+
+                <a class="" th:href="@{courses(id=${module.moduleId})}">See Courses</a>
+
+            </td>
+
+        </tr>
+
+
+    </table>
 
 </div>
-
-<script type="text/javascript"
-        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

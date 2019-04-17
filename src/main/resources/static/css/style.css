@@ -6,23 +6,23 @@
 
 
 
-.register-link{
+.register-link, .login-link{
     text-align: center;
 }
 
-.reg-link-btn{
+.reg-link-btn, .login-link-btn{
     padding: 0px;
 }
 
-.login-label,.register-label{
+.login-label, .register-label{
     float: left;
 }
 
-.login-input{
+.login-input, .reg-input{
     height: 50px;
 }
 
-.btn-login{
+.btn-login, .btn-register{
     border-radius:50px !important;
     height: 50px;
 
