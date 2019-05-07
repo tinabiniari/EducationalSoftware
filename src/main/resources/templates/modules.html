@@ -9,7 +9,8 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light  ">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,14 +18,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/modules}">Courses</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/testList}">Tests</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">My Accomplishments</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
@@ -37,19 +43,19 @@
 <br>
 <div class="container">
 <h2>Modules</h2>
-    <table class="table table-bordered ">
+    <table class="module-table table table-borderless ">
 
 
-        <tr th:each="module : ${modules}">
+        <tr>
+            <td class="module-cell" th:each="module : ${modules}">
 
-            <td th:text="${module.moduleId}"></td>
-            <td th:text="${module.moduleName}"></td>
-            <td>
+                <p class="module-title" th:text="${module.moduleName}"></p>
 
-                <a class="" th:href="@{courses(id=${module.moduleId})}">See Courses</a>
+                <a class="module-link" th:href="@{courses(id=${module.moduleId})}">List of Courses</a>
+
+
 
             </td>
-
         </tr>
 
 

@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -42,21 +43,36 @@
 <br>
 <br>
 <div class="container">
-        <label class="validation-message" th:text="${errorMessage}"></label>
+    <form th:action="@{/test}" method="post">
+        <label class="validation-message" th:utext="${errorMessage}"></label>
 
-<h2 th:text="${course.courseName}"></h2>
-    <table class="table table-stripped">
+        <h3>Exercise: </h3>
+        <table class="table table-bordered">
+            <tr th:each="question:${question}">
+                <td>
+                    <p th:utext="${question.questionText}"></p>
 
-            <p th:utext="${course.courseTheory}"></p>
-        <a class="" th:href="@{test(courseId=${course.courseId})}">Take Test</a>
-        <br>
-        <form th:action="@{/theory}" method="post">
-            <button type="submit" class="btn btn-info">
-                Next Course
-            </button>
-            <input type="hidden" name="courseId" th:value="${courseId}"/>
-        </form>
-    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+
+            <tr th:each="answer:${question.answers}">
+                <td>
+                    <input type="radio" th:value="${answer.isCorrect}"
+                           th:id="${question.questionId}" th:name="${question.questionId}"/>
+                    <label th:text="${answer.answerText}" th:for="${question.questionId}"></label>
+
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="courseId" th:value="${courseId}"/>
+        <input type="hidden" name="questionId" th:value="${question.questionId}"/>
+
+        <button type="submit" class="btn btn-info">Submit</button>
+
+    </form>
+
 </div>
 
 </body>

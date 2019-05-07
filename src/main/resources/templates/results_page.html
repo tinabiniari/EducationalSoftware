@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -37,27 +38,20 @@
         </ul>
     </div>
 </nav>
-
-<br>
 <br>
 <br>
 <div class="container">
-        <label class="validation-message" th:text="${errorMessage}"></label>
-
-<h2 th:text="${course.courseName}"></h2>
-    <table class="table table-stripped">
-
-            <p th:utext="${course.courseTheory}"></p>
-        <a class="" th:href="@{test(courseId=${course.courseId})}">Take Test</a>
+    <div class="progress-row">
         <br>
-        <form th:action="@{/theory}" method="post">
-            <button type="submit" class="btn btn-info">
-                Next Course
-            </button>
-            <input type="hidden" name="courseId" th:value="${courseId}"/>
-        </form>
-    </table>
-</div>
+        <h3>Results: </h3>
 
+        <p>
+            <p class="progress-text" th:utext="${resultMessage}"></p><br>
+            <a th:href="@{courses(id=${moduleId})}" th:text="${buttonMessage}"></a>
+        </p>
+    </div>
+
+
+</div>
 </body>
 </html>

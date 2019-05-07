@@ -1,7 +1,9 @@
 package com.software.educational.web.controller;
 
 import com.software.educational.data.model.User;
+import com.software.educational.service.CourseService;
 import com.software.educational.service.ModuleService;
+import com.software.educational.service.ProgressService;
 import com.software.educational.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,13 @@ public class IndexController {
     @Autowired
     ModuleService moduleService;
 
+    @Autowired
+    CourseService courseService;
+
+    @Autowired
+    ProgressService progressService;
+
+
     @ModelAttribute("user")
     User getUser() {
         return new User();
@@ -29,9 +38,13 @@ public class IndexController {
     ModelAndView getIndex(ModelAndView modelAndView) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
-        modelAndView.addObject("welcomeMessage","Welcome " + user.getFirstName() + " " + user.getLastName() + " ");
+        modelAndView.addObject("welcomeMessage", "Welcome " + user.getFirstName() + " ");
+        modelAndView.addObject("modules", moduleService.getAllModules());
+        modelAndView.addObject("courses","You have completed " +progressService.countCourses(user.getUserId())+ " courses out of " + courseService.countAllCourses()+".");
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
+
 
 }

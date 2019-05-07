@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light  ">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,12 +19,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/modules}">Java Modules</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
+        </ul>
+            <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
@@ -36,8 +32,33 @@
 <br>
 <br>
 <div class="container">
-    <h2>        <span th:utext="${welcomeMessage}"></span>
-    </h2>
+    <div class="row">
+    <h1 class="display-4 text-muted">
+        <span th:utext="${welcomeMessage}"></span></h1>
+    </div>
+    <div class="progress-row">
+    <h2 class="h2">My Progress</h2>
+        <br>
+        <p>
+        <span class="progress-text" th:utext="${courses}"></span>
+        </p>
+        </div>
+<div class="row">
+    <table class="module-table table table-borderless ">
+
+            <tr>
+                <td class="module-cell">
+                <a class="module-link" th:href="@{/modules}">Check the Courses</a>
+                </td>
+                <td class="module-cell">
+                    <a class="module-link" th:href="@{/testList}">Test your knowledge</a>
+                </td>
+                <td class="module-cell">
+                    <a class="module-link" th:href="@{/modules}">Check your accomplishments</a>
+                </td>
+            </tr>
+        </table>
+</div>
 
 
 </div>

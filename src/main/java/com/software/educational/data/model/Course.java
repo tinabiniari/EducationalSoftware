@@ -1,6 +1,7 @@
 package com.software.educational.data.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -13,9 +14,9 @@ public class Course {
 
     private String courseTheory;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "course_question",joinColumns = @JoinColumn(name = "course_id"),inverseJoinColumns = @JoinColumn(name="question_id"))
-    private Question questions;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "question_id")
+    private List<Question> questionId;
 
     private Long moduleId;
 
@@ -27,13 +28,7 @@ public class Course {
         this.moduleId = moduleId;
     }
 
-    public Question getQuestions() {
-        return questions;
-    }
 
-    public void setQuestions(Question questions) {
-        this.questions = questions;
-    }
 
     public Long getCourseId() {
         return courseId;

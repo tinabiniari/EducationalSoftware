@@ -13,15 +13,15 @@ public class Question {
     private  String questionText;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "question_module",joinColumns = @JoinColumn(name = "question_id"),inverseJoinColumns = @JoinColumn(name="module_id"))
+    @JoinColumn(name = "module_id")
     private Module module;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "question_course",joinColumns = @JoinColumn(name = "question_id"),inverseJoinColumns = @JoinColumn(name="course_id"))
+    @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private Set<Answer> answers;
+    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "questionId")
+    public Set<Answer> answers;
 
     public Long getQuestionId() {
         return questionId;

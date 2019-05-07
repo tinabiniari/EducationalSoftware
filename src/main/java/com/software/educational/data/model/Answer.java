@@ -1,6 +1,7 @@
 package com.software.educational.data.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Answer {
@@ -11,10 +12,11 @@ public class Answer {
 
     private String answerText;
 
-    private boolean isCorrect;
+    @NotNull(message = "Please choose an answer")
+    public boolean isCorrect;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "answer_question",joinColumns = @JoinColumn(name = "answer_id"),inverseJoinColumns = @JoinColumn(name="question_id"))
+    @JoinColumn(name = "question_id")
     private Question questionId;
 
     public Long getAnswerId() {
