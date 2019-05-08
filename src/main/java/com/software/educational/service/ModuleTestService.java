@@ -1,6 +1,7 @@
 package com.software.educational.service;
 
 import com.software.educational.data.model.ModuleTest;
+import com.software.educational.data.repository.AnswerRepository;
 import com.software.educational.data.repository.ModuleTestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ public class ModuleTestService {
 
     @Autowired
     ModuleTestRepository moduleTestRepository;
+    @Autowired
+    AnswerRepository answerRepository;
 
     public ModuleTest saveResults(ModuleTest moduleTest){
         return moduleTestRepository.save(moduleTest);
@@ -27,25 +30,9 @@ public class ModuleTestService {
         }
         return moduleTestRepository.save(moduleTest);
     }
-//
-//    public Object getAnswer(HttpServletRequest httpServletRequest){
-//        Set<String> keys=httpServletRequest.getParameterMap().keySet();
-//        Object[] keysArray=keys.toArray();
-//        Collection<String[]> values = httpServletRequest.getParameterMap().values();
-//        Object[][] valuesArray = values.toArray(new Object[0][]);
-//        Map<Object,Object> answerMap=new HashMap<>();
-//
-//        for (Object[] :myValue :valuesArray){
-//            for (Object:myKey:keysArray) {
-//                answerMap.put()
-//            }
-//        }
-//        answerMap.put(keysArray,valuesArray);
-//
-//    }
 
 
-    public static Map<String,String> getAnswerMap(HttpServletRequest httpServletRequest){
+    public static List<Object> getUserInputValues(HttpServletRequest httpServletRequest){
         Collection<String[]> values = httpServletRequest.getParameterMap().values();
         Set<String> keys=httpServletRequest.getParameterMap().keySet();
         Object[] keysArray=keys.toArray();
@@ -59,42 +46,49 @@ public class ModuleTestService {
             total++;
         }
 
-        return answerMap;
+        Collection<String> mapValues = answerMap.values();
+        List<Object> userInput = new ArrayList<>(mapValues);
+
+        return userInput;
     }
 
-    public static ArrayList<Object> getKeysFromValue(Map hm, Object value) {
-        ArrayList<Object> myList=new ArrayList();
-        myList.add("list");
-        for (Object o : hm.keySet()) {
-            if (hm.get(o.toString()).equals(value)) {
-                myList.add(o);
-
-            }
+    public List<Object> getWrongAnswers(HttpServletRequest httpServletRequest){
+        List<Object> falseAnswersStrings = new ArrayList<Object>(getFalseAnswers().size());
+        for (Long myInt : getFalseAnswers()) {
+            falseAnswersStrings.add(String.valueOf(myInt));
         }
-        return myList;
+
+        falseAnswersStrings.retainAll(getUserInputValues(httpServletRequest));
+        return falseAnswersStrings;
     }
 
-
-
-    public static Double getScore(HttpServletRequest httpServletRequest){
-        Collection<String[]> values = httpServletRequest.getParameterMap().values();
-        Object[][] valuesArray = values.toArray(new Object[0][]);
-        Set<String> keys=httpServletRequest.getParameterMap().keySet();
-        Object[] keysArray=keys.toArray();
-        Map<Object,Object> answerMap=new HashMap<>();
-
-        int count=0;
-        int total=0;
-        for (Object[] myValue : valuesArray) {
-
-            if (myValue[0].equals("true")) {
-                count++;
-
-            }
-            total++;
+    public List<Object> getCorrect(HttpServletRequest httpServletRequest){
+        List<Object> correctAnswersString = new ArrayList<Object>(getCorrectAnswers().size());
+        for (Long myInt : getCorrectAnswers()) {
+            correctAnswersString.add(String.valueOf(myInt));
         }
-        getAnswerMap(httpServletRequest);
-        total--;
-        return (double) ((count*100)/total);
+
+        correctAnswersString.retainAll(getUserInputValues(httpServletRequest));
+        return correctAnswersString;
     }
+
+    public Double getScore(HttpServletRequest httpServletRequest){
+        List<Object> trueAnswersStrings = new ArrayList<Object>(getFalseAnswers().size());
+        for (Long myInt : getCorrectAnswers()) {
+            trueAnswersStrings.add(String.valueOf(myInt));
+        }
+
+        trueAnswersStrings.retainAll(getUserInputValues(httpServletRequest));
+        return ((double)((trueAnswersStrings.size()*100)/(getUserInputValues(httpServletRequest).size()-1)));
+    }
+
+    public  List<Long> getFalseAnswers(){
+        return answerRepository.findFalseAnswersByIsCorrect();
+    }
+    public  List<Long> getCorrectAnswers(){
+        return answerRepository.findCorrectAnswersByIsCorrect();
+    }
+
+
+
 }

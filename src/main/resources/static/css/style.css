@@ -45,6 +45,10 @@ nav{
     width: 100%;
 
 }
+
+.false-label{
+    color:red;
+}
 .navbar-brand{
     font-size: 25px;
 }

@@ -58,16 +58,18 @@
         <th:block th:each="answer:${question.answers}">
         <tr>
             <td>
+                <div class="alert " th:classappend="(${#lists.contains(newList,'' +answer.answerId)} ? 'alert-danger')"  role="alert">
+                <div class="alert " th:classappend="(${#lists.contains(trueList,'' +answer.answerId)} ? 'alert-success')" role="alert">
 
-                <input type="hidden" name="answer_id" th:value="${answer.answerId}">
-                <input type="radio" th:value="${answer.isCorrect}"
-                th:id="${answer.answerId}" th:name="${question.questionId}" required/>
-
-
-                <label th:utext="${answer.answerText}" th:for="${question.questionId}"></label>
-                <label th:if="${#lists.contains(falseList,'' +answer.answerId)}">False</label>
+                <input type="radio" th:value="${answer.answerId}"
+                th:id="${answer.answerId}" th:name="${question.questionId}" required />
 
 
+                <label  th:utext="${answer.answerText}" th:for="${question.questionId}"></label>
+                <!--<label th:if="${#lists.contains(newList,'' +answer.answerId)}">False</label>-->
+
+                </div>
+                </div>
             </td>
             </tr>
         </th:block>

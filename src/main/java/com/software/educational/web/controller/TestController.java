@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 @Controller
 public class TestController {
@@ -49,6 +51,14 @@ public class TestController {
         Module module = moduleService.getModulebyId(moduleId);
         modelAndView.addObject("question", questionService.getQuestionbyModuleId(module.getModuleId()));
         modelAndView.addObject("moduleId",moduleId);
+        List<Long> falseAnswers=moduleTestService.getFalseAnswers();
+        List<Object> newList = new ArrayList<Object>(falseAnswers.size());
+        List<Long> correctAnswers=moduleTestService.getCorrectAnswers();
+        List<Object> trueAnswers = new ArrayList<Object>(correctAnswers.size());
+
+
+        modelAndView.addObject("trueList",trueAnswers);
+        modelAndView.addObject("newList",newList);
         modelAndView.addObject("moduleName",module.getModuleName());
         modelAndView.setViewName("module_test");
         return modelAndView;
@@ -67,28 +77,29 @@ public class TestController {
         String moduleId = httpServletRequest.getParameter("moduleId");
         long module_id=Long.parseLong(moduleId);
         ModuleTest moduleTest=new ModuleTest();
-        double score=moduleTestService.getScore(httpServletRequest);
 
-
+        Double myscore=moduleTestService.getScore(httpServletRequest);
         moduleTest.setUserId(user.getUserId());
         moduleTest.setModuleId(module_id);
-        moduleTest.setScore(score);
+        moduleTest.setScore(myscore);
         moduleTestService.saveTestResults(moduleTest);
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("results_page");
+        ModelAndView modelAndView=getQuestionPerModule(module_id);
+        modelAndView.addObject("newList",moduleTestService.getWrongAnswers(httpServletRequest));
+        modelAndView.addObject("trueList",moduleTestService.getCorrect(httpServletRequest));
+        modelAndView.setViewName("module_test");
         if(bindingResult.hasErrors()){
             return modelAndView;
         }
 
 
-        if(score < 50){
-            modelAndView.addObject("resultMessage","You failed Test " +moduleId+ "with score "+score+".<br> Please read again the theory of the module <br> (The courses of this module will be set to non-read)");
+        if(myscore < 50){
+            modelAndView.addObject("resultMessage","You failed Test " +moduleId+ "with score "+myscore+".<br> Please read again the theory of the module <br> (The courses of this module will be set to non-read)");
             modelAndView.addObject("moduleId",module_id);
             modelAndView.addObject("buttonMessage","Check again the courses");
             return modelAndView;
         }
-        if(score>50){
-            modelAndView.addObject("resultMessage","Congratulations! <br> You passed Test " +moduleId+ " with score " +score+ "% <br> Keep up the good work!");
+        if(myscore>50){
+            modelAndView.addObject("resultMessage","Congratulations! <br> You passed Test " +moduleId+ " with score " +myscore+ "% <br> Keep up the good work!");
             modelAndView.addObject("moduleId",module_id+1);
             modelAndView.addObject("buttonMessage","Continue");
             return modelAndView;
