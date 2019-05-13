@@ -36,6 +36,8 @@ public class TestController {
     @Autowired
     ModuleTestService moduleTestService;
 
+
+
     @GetMapping(value = "/test", params = {"courseId"})
     public ModelAndView getTest(@RequestParam("courseId") long courseId) {
         ModelAndView modelAndView = new ModelAndView();
@@ -59,6 +61,9 @@ public class TestController {
 
         modelAndView.addObject("trueList",trueAnswers);
         modelAndView.addObject("newList",newList);
+        modelAndView.addObject("type","radio");
+        modelAndView.addObject("visibility","btn btn-info");
+
         modelAndView.addObject("moduleName",module.getModuleName());
         modelAndView.setViewName("module_test");
         return modelAndView;
@@ -77,15 +82,23 @@ public class TestController {
         String moduleId = httpServletRequest.getParameter("moduleId");
         long module_id=Long.parseLong(moduleId);
         ModuleTest moduleTest=new ModuleTest();
+        ModelAndView modelAndView=getQuestionPerModule(module_id);
+
+        List<Object> list=new ArrayList<>();
+        list.addAll(httpServletRequest.getParameterMap().values());
+        list.remove(0);
+
 
         Double myscore=moduleTestService.getScore(httpServletRequest);
         moduleTest.setUserId(user.getUserId());
         moduleTest.setModuleId(module_id);
         moduleTest.setScore(myscore);
         moduleTestService.saveTestResults(moduleTest);
-        ModelAndView modelAndView=getQuestionPerModule(module_id);
         modelAndView.addObject("newList",moduleTestService.getWrongAnswers(httpServletRequest));
         modelAndView.addObject("trueList",moduleTestService.getCorrect(httpServletRequest));
+        modelAndView.addObject("type","hidden");
+        modelAndView.addObject("visibility","hide");
+
         modelAndView.setViewName("module_test");
         if(bindingResult.hasErrors()){
             return modelAndView;
@@ -130,7 +143,7 @@ public class TestController {
             progressService.saveProgress(progress);
             if (courseId < maxCourse) {
                 long newCourseId = courseId + 1;
-                return new ModelAndView("redirect:/theory?id=" + newCourseId);
+                return new ModelAndView("redirect:/theory?courseId=" + newCourseId);
 
             }
             long nextModule = moduleId + 1;
@@ -139,6 +152,8 @@ public class TestController {
         }
         ModelAndView modelAndView=getTest(courseId);
         modelAndView.addObject("errorMessage","Wrong answer! Please try again");
+        modelAndView.addObject("alert","alert alert-danger");
+
         return modelAndView;
 
     }

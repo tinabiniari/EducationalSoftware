@@ -41,17 +41,44 @@
 <br>
 <br>
 <div class="container">
+    <div class="row">
+        <div class="col">
     <div class="progress-row">
         <br>
-        <h3>Results: </h3>
+        <h3>Completed Courses: </h3>
 
         <p>
-            <p class="progress-text" th:utext="${resultMessage}"></p><br>
-            <a th:href="@{courses(id=${moduleId})}" th:text="${buttonMessage}"></a>
+
+                <table class="table">
+                    <tr th:each="course:${progress}">
+                        <td th:text="${course}">
+                        </td>
+                    </tr>
+                </table>
+
         </p>
     </div>
+        </div>
+    <br>
+        <div class="col">
+    <div class="progress-row">
+        <br>
+        <h3>Tests: </h3>
 
+        <p>
 
+        <table class="table">
+            <tr th:each="test:${test}">
+                 <td th:text="Module + ' ' + ${test.Id}"></td>
+                <td th:if="${test.score >= 50}" style="color: #0da403">Success with score <span th:text="${test.score}" style="color: #0da403"></span> %</td>
+                <td th:unless="${test.score >= 50}" style="color: darkred">Failed with score <span th:text="${test.score}" style="color: darkred"></span> %</td>
+            </tr>
+        </table>
+
+        </p>
+    </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

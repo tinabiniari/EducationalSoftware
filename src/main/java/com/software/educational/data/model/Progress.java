@@ -1,9 +1,7 @@
 package com.software.educational.data.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Progress {
@@ -12,16 +10,19 @@ public class Progress {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         public Long Id;
 
-
+        @NotNull
+        @Column(name = "user_id")
         private Long userId;
 
-
+        @NotNull
+        @Column(name = "module_id")
         private Long moduleId;
 
-
+        @NotNull
+        @Column(name = "course_id")
         private Long courseId;
 
-
+        @NotNull
         private boolean isCourseRead=false;
 
     public Long getId() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
@@ -68,7 +69,7 @@ public class ModuleTestService {
             correctAnswersString.add(String.valueOf(myInt));
         }
 
-        correctAnswersString.retainAll(getUserInputValues(httpServletRequest));
+//        correctAnswersString.retainAll(getUserInputValues(httpServletRequest));
         return correctAnswersString;
     }
 
@@ -79,6 +80,8 @@ public class ModuleTestService {
         }
 
         trueAnswersStrings.retainAll(getUserInputValues(httpServletRequest));
+        DecimalFormat decimalFormat = new DecimalFormat("####0.00");
+
         return ((double)((trueAnswersStrings.size()*100)/(getUserInputValues(httpServletRequest).size()-1)));
     }
 
@@ -87,6 +90,10 @@ public class ModuleTestService {
     }
     public  List<Long> getCorrectAnswers(){
         return answerRepository.findCorrectAnswersByIsCorrect();
+    }
+
+    public Iterable<ModuleTest> getCompletedTest(Long userId){
+        return moduleTestRepository.findByUserId(userId);
     }
 
 

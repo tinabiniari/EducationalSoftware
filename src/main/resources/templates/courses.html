@@ -47,7 +47,7 @@
 
         <tr th:each="course : ${courses}">
             <td th:text="${course.courseId}"></td>
-            <td><a class="" th:href="@{theory(id=${course.courseId})}"><p th:text="${course.courseName}"></p></a>
+            <td><a class="" th:href="@{theory(courseId=${course.courseId})}"><p th:text="${course.courseName}"></p></a>
             </td>
         </tr>
 

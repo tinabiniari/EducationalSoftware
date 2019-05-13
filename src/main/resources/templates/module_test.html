@@ -58,10 +58,10 @@
         <th:block th:each="answer:${question.answers}">
         <tr>
             <td>
-                <div class="alert " th:classappend="(${#lists.contains(newList,'' +answer.answerId)} ? 'alert-danger')"  role="alert">
-                <div class="alert " th:classappend="(${#lists.contains(trueList,'' +answer.answerId)} ? 'alert-success')" role="alert">
+                <div class="alert " th:classappend="((${#lists.contains(newList,'' +answer.answerId)}) ? 'alert-danger' : ((${#lists.contains(trueList,'' +answer.answerId)}) ? 'alert-success'))"  role="alert">
+                <!--<div class="alert " th:classappend="(${#lists.contains(trueList,'' +answer.answerId)} ? 'alert-success')" role="alert">-->
 
-                <input type="radio" th:value="${answer.answerId}"
+                <input th:type="${type}" th:value="${answer.answerId}"
                 th:id="${answer.answerId}" th:name="${question.questionId}" required />
 
 
@@ -69,7 +69,7 @@
                 <!--<label th:if="${#lists.contains(newList,'' +answer.answerId)}">False</label>-->
 
                 </div>
-                </div>
+                <!--</div>-->
             </td>
             </tr>
         </th:block>
@@ -77,9 +77,10 @@
 
         </th:block>
 
-        <button type="submit" class="btn btn-info">Submit</button>
+        <button type="submit" th:class="${visibility}">Submit</button>
 
         <label class="validation-message" th:utext="${resultMessage}"></label>
+        <a th:href="@{courses(id=${moduleId})}" th:text="${buttonMessage}"></a>
 
 
     </form>

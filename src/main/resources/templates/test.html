@@ -44,7 +44,7 @@
 <br>
 <div class="container">
     <form th:action="@{/test}" method="post">
-        <label class="validation-message" th:utext="${errorMessage}"></label>
+        <label th:class="${alert}" th:utext="${errorMessage}"></label>
 
         <h3>Exercise: </h3>
         <table class="table table-bordered">
@@ -60,7 +60,7 @@
             <tr th:each="answer:${question.answers}">
                 <td>
                     <input type="radio" th:value="${answer.isCorrect}"
-                           th:id="${question.questionId}" th:name="${question.questionId}"/>
+                           th:id="${question.questionId}" th:name="${question.questionId}" required/>
                     <label th:text="${answer.answerText}" th:for="${question.questionId}"></label>
 
                 </td>

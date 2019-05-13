@@ -6,6 +6,8 @@ import com.software.educational.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class ProgressService {
 
@@ -31,4 +33,15 @@ public class ProgressService {
     public Boolean getPreviousCourseProgress(Long course_id){
         return progressRepository.checkPreviousCourseByCourseId(course_id);
     }
+
+    public ArrayList getProgress(Long userId){
+        return progressRepository.findMyProgress(userId);
+    }
+
+
+
+
+
+
+
 }

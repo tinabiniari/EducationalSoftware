@@ -49,6 +49,11 @@ nav{
 .false-label{
     color:red;
 }
+.hide{
+    display: none;
+}
+
+
 .navbar-brand{
     font-size: 25px;
 }
