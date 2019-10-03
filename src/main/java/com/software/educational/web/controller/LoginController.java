@@ -19,8 +19,14 @@ public class LoginController {
     }
 
     @GetMapping("")
-    ModelAndView login(ModelAndView modelAndView) {
-        modelAndView.setViewName("login");
+    ModelAndView main(ModelAndView modelAndView) {
+        modelAndView.setViewName("main");
+        return modelAndView;
+    }
+
+    @GetMapping("/main")
+    ModelAndView getMain(ModelAndView modelAndView) {
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 

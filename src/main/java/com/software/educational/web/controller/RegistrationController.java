@@ -26,12 +26,14 @@ public class RegistrationController {
     }
 
 
+    //show registration page
     @GetMapping
     ModelAndView getRegistration(ModelAndView modelAndView) {
         modelAndView.setViewName("registration");
         return modelAndView;
     }
 
+    // save user if does not exist
     @PostMapping
     ModelAndView saveUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelAndView modelAndView) {
         if (userService.findByEmail(user.getEmail()) != null) {
@@ -44,6 +46,8 @@ public class RegistrationController {
         User regUser = userService.saveUser(user);
         modelAndView.setViewName("registration");
         modelAndView.addObject("successMessage", "User " + regUser.getEmail() + " has being successfully registered");
+        modelAndView.addObject("alert", "alert-success");
+
         return modelAndView;
     }
 }

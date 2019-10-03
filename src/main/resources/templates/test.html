@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registration Form</title>
+    <title>Course Test</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,8 +11,9 @@
 <body>
 
 
+
 <nav class="navbar navbar-expand-lg navbar-light  ">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="icon navbar-brand" th:href="@{/index}"><img border="0" alt="W3Schools" src="/css/logo.png" width="50" height="60" style="margin: 10px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,7 +29,11 @@
                 <a class="nav-link" th:href="@{/testList}">Tests</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">My Accomplishments</a>
+                <a class="nav-link" th:href="@{/myProgress}">My Progress</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/help}">Help</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -36,6 +41,7 @@
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
         </ul>
+
     </div>
 </nav>
 
@@ -43,34 +49,44 @@
 <br>
 <br>
 <div class="container">
+    <input type="hidden" name="courseId" th:value="${courseId}"/>
+
     <form th:action="@{/test}" method="post">
+        <div style="text-align: center;margin-bottom: 5%">
         <label th:class="${alert}" th:utext="${errorMessage}"></label>
+        </div>
+        <h1 class="my-title display-4 text-muted" style="text-align: center">
+            Test for course <span th:text="${courseId}"></span></h1>
+        <p style="text-align: center">Please choose the right answer</p>
+        <th:block th:each="question:${question}">
+            <table class="test_table table table-bordered table-hover table-question">
+                <thead>
+                <tr>
+                    <td class="question-cell shadow p-3 mb-5 rounded">
+                        <p th:utext="${question.questionText}"></p>
 
-        <h3>Exercise: </h3>
-        <table class="table table-bordered">
-            <tr th:each="question:${question}">
-                <td>
-                    <p th:utext="${question.questionText}"></p>
 
-                </td>
-            </tr>
-        </table>
-        <table class="table">
-
-            <tr th:each="answer:${question.answers}">
-                <td>
+                    </td>
+                </tr>
+                </thead>
+                <th:block th:each="answer:${question.answers}">
+                    <tr>
+                        <td class="shadow p-3 mb-5 rounded">
                     <input type="radio" th:value="${answer.isCorrect}"
                            th:id="${question.questionId}" th:name="${question.questionId}" required/>
                     <label th:text="${answer.answerText}" th:for="${question.questionId}"></label>
 
                 </td>
             </tr>
+                </th:block>
+
         </table>
+        </th:block>
         <input type="hidden" name="courseId" th:value="${courseId}"/>
         <input type="hidden" name="questionId" th:value="${question.questionId}"/>
-
-        <button type="submit" class="btn btn-info">Submit</button>
-
+        <div style="text-align: center">
+        <button type="submit" style="" class="btn btn-info submit-btn">Submit</button>
+        </div>
     </form>
 
 </div>

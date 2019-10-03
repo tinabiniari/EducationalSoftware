@@ -12,17 +12,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Email
-    @NotEmpty
+    @Email(message = "Please provide a valid email address")
+    @NotEmpty(message = "Please provide an email")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "Please provide a password")
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "Please provide a name")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "Please provide a surname")
     private  String lastName;
 
     private int active;

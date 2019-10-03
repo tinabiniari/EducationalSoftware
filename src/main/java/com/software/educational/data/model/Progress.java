@@ -25,6 +25,7 @@ public class Progress {
         @NotNull
         private boolean isCourseRead=false;
 
+
     public Long getId() {
         return Id;
     }
@@ -64,4 +65,5 @@ public class Progress {
     public void setCourseRead(boolean courseRead) {
         isCourseRead = courseRead;
     }
+
 }

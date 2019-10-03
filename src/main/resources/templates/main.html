@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+<div class=""></div>
+<div>
+    <h1 class="my-title display-4 text-muted">Welcome to Java Educational Software</h1><p class="welcome">Java is a high-level programming language originally developed by Sun Microsystems and released in 1995.<br>
+    Java runs on a variety of platforms, such as Windows, Mac OS, and the various versions of UNIX.<br>
+    This software gives a complete understanding of Java.<br>
+    This reference will take you through simple and practical approaches while learning Java Programming language.</p></div>
+
+<div class="row">
+    <table class="module-table table table-borderless ">
+
+            <tr>
+                <td class="module-cell">
+                <a class="module-link" th:href="@{/login}">Login</a>
+                </td>
+                <td class="module-cell">
+                    <a class="module-link" th:href="@{/registration}">Register</a>
+                </td>
+
+                <td class="module-cell">
+                    <a class="module-link" th:href="@{/help}">Help</a>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+</div>
+
+
+
+</body>
+</html>

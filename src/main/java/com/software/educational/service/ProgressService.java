@@ -26,12 +26,12 @@ public class ProgressService {
         return progressRepository.save(progress);
     }
 
-    public Integer countCourses(Long user_id){
+    public Double countCourses(Long user_id){
         return progressRepository.countReadCourses(user_id);
     }
 
-    public Boolean getPreviousCourseProgress(Long course_id){
-        return progressRepository.checkPreviousCourseByCourseId(course_id);
+    public Boolean getCourseProgress(Long course_id,Long user_id){
+        return progressRepository.checkCourseStatusByCourseId(course_id,user_id);
     }
 
     public ArrayList getProgress(Long userId){

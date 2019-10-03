@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Theory Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Congratulations</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -45,32 +46,19 @@
 </nav>
 <br>
 <br>
-<br>
 <div class="container">
-    <div class="alert-msg alert " th:classappend="${alert}">
-        <label class="validation-message" th:text="${errorMessage}"></label>
+    <div class="row">
+        <div class="col">
+            <div class="progress-row">
+                <br>
+                <h3 th:text="${successTitle}"></h3>
+
+                <p th:utext="${successMessage}"></p>
+            </div>
+            <a class="btn btn-outline-info" style="margin: 10px;width: 50%;" th:href="@{moduleTest(moduleId=${moduleId})}">Take Test</a>
+
+        </div>
     </div>
-
-    <h1 class="my-title display-4 text-muted">
-        <span th:text="${course.courseName}"></span></h1>
-<h2 ></h2>
-    <table class="table table-stripped">
-
-            <p th:utext="${course.courseTheory}"></p>
-    </table>
-<div class="row" style="margin: 3%">
-    <a class="btn btn-outline-info" style="margin: 0 auto;width: 30%;padding: 13px;" th:href="@{test(courseId=${course.courseId})}">Take Test</a>
-        <br>
-        <form th:action="@{/theory}" method="post">
-            <button type="submit" class="btn btn-info" style="padding: 13px;">
-                Next Course
-            </button>
-            <input type="hidden" name="courseId" th:value="${courseId}"/>
-            <input type="hidden" name="moduleId" th:value="${moduleId}"/>
-
-        </form>
 </div>
-</div>
-
 </body>
 </html>

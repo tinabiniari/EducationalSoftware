@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registration Form</title>
+    <title>Test Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light  ">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="icon navbar-brand" th:href="@{/index}"><img border="0" alt="W3Schools" src="/css/logo.png" width="50" height="60" style="margin: 10px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,7 +28,11 @@
                 <a class="nav-link" th:href="@{/testList}">Tests</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">My Accomplishments</a>
+                <a class="nav-link" th:href="@{/myProgress}">My Progress</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/help}">Help</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -36,19 +40,25 @@
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
         </ul>
+
     </div>
 </nav>
 <div class="container">
+    <div class="alert-msg alert " th:classappend="${alert}">
+    <label class="validation-message" th:utext="${resultMessage}"></label><br>
+    <a th:href="@{courses(id=${moduleId})}" th:text="${buttonMessage}"></a>
+    </div>
     <h2>Test in module: <!--/*@thymesVar id="moduleName" type="com.software.educational.data.model.Module"*/-->
     <span th:text="${moduleName}"></span> </h2>
+    <p>Please choose an answer for every question, and at the end of the test click on the button <b>Submit</b></p>
     <form th:action="@{/moduleTest}" method="post">
         <input type="hidden" name="moduleId" th:value="${moduleId}"/>
 
     <th:block th:each="question:${question}">
-        <table class="table table-bordered table-hover table-question">
+        <table class="test_table table table-bordered table-hover table-question">
         <thead>
         <tr>
-            <td class="question-cell">
+            <td class="question-cell shadow p-3 mb-5 rounded">
             <p th:utext="${question.questionText}"></p>
 
 
@@ -57,9 +67,8 @@
         </thead>
         <th:block th:each="answer:${question.answers}">
         <tr>
-            <td>
+            <td  class="shadow p-3 mb-5 rounded">
                 <div class="alert " th:classappend="((${#lists.contains(newList,'' +answer.answerId)}) ? 'alert-danger' : ((${#lists.contains(trueList,'' +answer.answerId)}) ? 'alert-success'))"  role="alert">
-                <!--<div class="alert " th:classappend="(${#lists.contains(trueList,'' +answer.answerId)} ? 'alert-success')" role="alert">-->
 
                 <input th:type="${type}" th:value="${answer.answerId}"
                 th:id="${answer.answerId}" th:name="${question.questionId}" required />
@@ -76,11 +85,10 @@
         </table>
 
         </th:block>
-
+        <div style="text-align: center;">
         <button type="submit" th:class="${visibility}">Submit</button>
+        </div>
 
-        <label class="validation-message" th:utext="${resultMessage}"></label>
-        <a th:href="@{courses(id=${moduleId})}" th:text="${buttonMessage}"></a>
 
 
     </form>

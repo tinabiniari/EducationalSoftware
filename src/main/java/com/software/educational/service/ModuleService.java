@@ -26,4 +26,5 @@ public class ModuleService {
         return moduleRepository.getOne(id);
     }
 
+    public  Long countModules(){return moduleRepository.count();}
 }

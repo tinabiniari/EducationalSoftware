@@ -10,10 +10,11 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
-    @Query(nativeQuery = true, value ="select * from question where module_id=?")
+    @Query(nativeQuery = true, value ="select * from question where module_id=? ORDER BY  random() LIMIT 10")
     List<Question> findQuestionsByModuleId(Long module_id);
 
     Question findQuestionByCourse_CourseId(Long courseId);
 
+    Question findByQuestionId(Long questionId);
 
 }

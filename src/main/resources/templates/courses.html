@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registration Form</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/resources/static/css/style.css}" />
+    <title>Courses</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-light  ">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="icon navbar-brand" th:href="@{/index}"><img border="0" alt="W3Schools" src="/css/logo.png" width="50" height="60" style="margin: 10px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,7 +27,11 @@
                 <a class="nav-link" th:href="@{/testList}">Tests</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">My Accomplishments</a>
+                <a class="nav-link" th:href="@{/myProgress}">My Progress</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/help}">Help</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -34,6 +39,7 @@
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
         </ul>
+
     </div>
 </nav>
 
@@ -41,13 +47,22 @@
 <br>
 <br>
 <div class="container">
-<h2 th:text="${module.moduleName}"></h2>
-    <table class="table table-bordered ">
+    <h1 class="my-title display-4 text-muted">
+        <span th:text="${module.moduleName}" style="text-align: center"></span></h1>
+    <p style="text-align: center">Please choose one of the courses to read its theory</p>
+
+</div>
+    <table class="module-table table table-borderless " style="margin: 0 auto;width: 50%;">
 
 
         <tr th:each="course : ${courses}">
-            <td th:text="${course.courseId}"></td>
-            <td><a class="" th:href="@{theory(courseId=${course.courseId})}"><p th:text="${course.courseName}"></p></a>
+                <td class="module-cell" >
+
+                    <p class="my-cell" th:text="${course.courseId} + '.' + ${course.courseName}"></p>
+
+                <a th:class="${map.get(course.courseId).equals('isAvailable')}? 'module-link': 'disabled-link'"
+                   th:href="@{theory(courseId=${course.courseId})}"
+                   th:text="${map.get(course.courseId).equals('isAvailable')}? 'Check Course': '&#128274' "></a>
             </td>
         </tr>
 

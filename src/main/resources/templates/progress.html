@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registration Form</title>
+    <title>My Progress</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,8 +11,9 @@
 <body>
 
 
+
 <nav class="navbar navbar-expand-lg navbar-light  ">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="icon navbar-brand" th:href="@{/index}"><img border="0" alt="W3Schools" src="/css/logo.png" width="50" height="60" style="margin: 10px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,7 +29,11 @@
                 <a class="nav-link" th:href="@{/testList}">Tests</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">My Accomplishments</a>
+                <a class="nav-link" th:href="@{/myProgress}">My Progress</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/help}">Help</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -36,10 +41,11 @@
                 <a class="nav-link" th:href="@{/logout}">Log out</a>
             </li>
         </ul>
+
     </div>
 </nav>
 <br>
-<br>
+<h1 class="my-title display-4 text-muted">My Progress</h1>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -49,11 +55,22 @@
 
         <p>
 
-                <table class="table">
-                    <tr th:each="course:${progress}">
-                        <td th:text="${course}">
-                        </td>
-                    </tr>
+        <table class="table table-active table-bordered table-striped">
+        <thead class="table-dark">
+
+        <tr>
+            <td>Course No</td>
+            <td>Course Name</td>
+            <td>Module</td>
+        </tr>
+        </thead>
+    <tbody>
+        <tr th:each="course:${list}">
+            <td th:each="c:${course}" th:text="${c}">
+            </td>
+
+        </tr>
+    </tbody>
                 </table>
 
         </p>
@@ -67,12 +84,21 @@
 
         <p>
 
-        <table class="table">
+        <table class="table table-active table-bordered table-striped">
+        <thead class="table-dark">
+
+        <tr>
+            <td>Module No</td>
+            <td>Result</td>
+        </tr>
+        </thead>
+        <tbody>
             <tr th:each="test:${test}">
-                 <td th:text="Module + ' ' + ${test.Id}"></td>
+                 <td th:text="Module + ' ' + ${test.moduleId}"></td>
                 <td th:if="${test.score >= 50}" style="color: #0da403">Success with score <span th:text="${test.score}" style="color: #0da403"></span> %</td>
                 <td th:unless="${test.score >= 50}" style="color: darkred">Failed with score <span th:text="${test.score}" style="color: darkred"></span> %</td>
             </tr>
+        </tbody>
         </table>
 
         </p>

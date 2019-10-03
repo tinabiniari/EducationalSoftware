@@ -16,4 +16,7 @@ public interface ModuleTestRepository extends JpaRepository<ModuleTest,Long> {
 
     Iterable<ModuleTest> findByUserId(Long userId);
 
+    @Query(nativeQuery = true, value = "SELECT COUNT(module_id) FROM module_test where user_id=? and score>=50;")
+    Double countCompletedTests(Long user_id);
+
 }

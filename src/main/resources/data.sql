@@ -1,0 +1,1240 @@
+-- INSERT INTO public.role (role_id, role) VALUES (1, 'STUDENT');
+-- INSERT INTO public.role (role_id, role) VALUES (2, 'PROFESSOR');
+-- INSERT INTO public.role (role_id, role) VALUES (3, 'ADMIN');
+--
+-- INSERT INTO public.module (module_id, module_name) VALUES (1, 'Basic Concepts of Java');
+-- INSERT INTO public.module (module_id, module_name) VALUES (2, 'Conditionals and Loops');
+-- INSERT INTO public.module (module_id, module_name) VALUES (3, 'Arrays');
+--
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (1, 'Introduction', '<div class="db-div"><h2>What is Java?</h2>
+-- <p>Java is a popular programming language, created in 1995.</p>
+--
+-- <p>It is owned by Oracle, and more than 3 billion devices run Java.
+--
+-- <p>It is used for:
+--
+-- <ul>Mobile applications (specially Android apps)
+-- <li>Desktop applications</li>
+-- <li>Web applications</li>
+-- <li>Web servers and application servers</li>
+-- <li>Games</li>
+-- <li>Database connection</li>
+-- <li>And much, much more!<?li></ul>
+-- <h2>Why Use Java?</h2>
+-- <ul><li>Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)</li>
+-- <li>It is one of the most popular programming language in the world</li>
+-- <li>It is easy to learn and simple to use</li>
+-- <li>It is open-source and free</li>
+-- <li>It is secure, fast and powerful</li>
+-- <li>It has a huge community support (tens of millions of developers)</li></ul></div>
+-- ', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (2, 'A Hello World Program', '<div class="db-div"><h2>Your First Java Program</h2>
+--
+-- <p>Let''s start by creating a simple program that prints “Hello World” to the screen.</p>
+-- <code> class MyClass {<br>
+--   public static void main(String[ ] args) {<br>
+--     System.out.println("Hello World");<br>
+--   }<br>
+-- }</code>
+--
+-- <h2>The main Method</h2>
+-- <p>The main() method is required and you will see it in every Java program:<br><br>
+--
+-- <code>public static void main(String[] args)</code><br><br>
+-- Any code inside the main() method will be executed. You don''t have to understand the keywords before and after main. You will get to know them bit by bit while reading this tutorial.<br>
+--
+-- For now, just remember that every Java program has a class name which must match the filename, and that every program must contain the main() method.<br>
+-- <br>
+-- <code>System.out.println()</code><br><br>
+-- Inside the main() method, we can use the println() method to print a line of text to the screen:<br>
+-- <br>
+-- <code>public static void main(String[] args) {<br>
+--   System.out.println("Hello World");<br>
+-- }</code><br>
+-- <p>Note: In Java, each code statement must end with a semicolon.</div>', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (3, 'Java Comments', '<div class="db-div"><h2>Java Comments</h2>
+-- <p> Comments can be used to explain Java code, and to make it more readable. It can also be used to prevent execution when testing alternative code.<br>
+--
+-- Single-line comments start with two forward slashes (//).<br>
+--
+-- Any text between // and the end of the line is ignored by Java (will not be executed).<br>
+--
+-- This example uses a single-line comment before a line of code:<br>
+--
+-- <p style="color:green">// This is a comment</p>
+-- <code>System.out.println("Hello World");<br>
+-- </code><br>
+-- This example uses a single-line comment at the end of a line of code:
+-- <br>
+-- <code>
+-- System.out.println("Hello World"); <p style="color:green">// This is a comment
+-- </p>
+-- </code><br>
+-- <br><h2Java Multi-Line Comments</h2>
+-- <p>Multi-line comments start with /* and ends with */.<br>
+--
+-- Any text between /* and */ will be ignored by Java.<br>
+--
+-- This example uses a multi-line comment (a comment block) to explain the code:<br>
+--
+-- <p style="color:green">
+-- /* The code below will print the words Hello World<br>
+-- to the screen, and it is amazing */</p>
+-- <code>System.out.println("Hello World");</code></div>', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (4, 'Java Operators', '<div class="db-div"><h2>Java Assignment Operators</h2>
+-- <p>Assignment operators are used to assign values to variables.<br>
+--
+-- In the example below, we use the assignment operator (=) to assign the value 10 to a variable called x:<br>
+--
+-- <var>int x = 10;</var><br><br>
+--
+-- <p>The addition assignment operator (+=) adds a value to a variable:<br>
+--
+--
+-- <var>int x = 10;<br>
+-- x += 5;</var><br><br>
+-- <p>A list of all assignment operators:<br>
+-- <table class="table table-bordered ">
+-- <thead>
+-- <tr>
+-- <td>Operator</td>
+-- <td>Example</td>
+-- <td>Same As</td>
+-- </tr></thead>
+-- <tr>
+-- <td>=</td>
+-- <td>x = 5</td>
+-- <td>x = 5</td>
+-- </tr>
+-- <tr>
+-- <td>+=</td>
+-- <td>x += 3</td>
+-- <td>x = x + 3</td></tr>
+-- <tr>
+-- <td>-=</td>
+-- <td>x -= 3</td>
+-- <td>x = x - 3</td></tr>
+-- <tr>
+-- <td>*=</td>
+-- <td>x *= 3</td>
+-- <td>x = x * 3</td></tr>
+-- <tr>
+-- <td>/=	</td>
+-- <td>x /= 3
+-- <td>x = x / 3</td></tr>
+-- <tr>
+-- <td>%=</td>
+-- <td>x %= 3	</td>
+-- <td>x = x % 3	</td></tr>
+--
+-- <tr>
+--
+-- <td>&=</td>
+-- <td>x &= 3</td>
+-- <td>x = x & 3	</td>
+-- </tr>
+-- <tr>
+-- <td>|=	</td>
+-- <td>x |= 3	</td>
+-- <td>x = x | 3	</td></tr>
+-- <tr>
+-- <td>^=</td>
+-- <td>x ^= 3	</td>
+-- <td>x = x ^ 3	</td>
+-- </tr>
+-- <tr><td>
+-- >>=	</td>
+-- <td>x >>= 3	</td>
+-- <td>x = x >> 3	</td>
+-- </tr></table>
+-- <h3>Java Comparison Operators</h3>
+-- Comparison operators are used to compare two values:<br>
+--
+-- <table class="table table-bordered ">
+-- <thead><tr>
+-- <td>
+-- Operator</td>
+-- <td>	Name</td>
+-- <td>	Example	</td>
+-- </tr></thead>
+-- <tr>
+-- <td>==</td>
+-- <td>	Equal to</td>
+-- <td>	x == y	</td></tr>
+-- <tr><td>!=</td>
+-- <td>	Not equal</td>
+-- <td>	x != y	</td></tr>
+-- <tr>
+-- <td>></td>
+-- <td>Greater than</td>
+-- <td>	x > y	</td>
+-- </tr>
+-- <tr>
+-- <td><</td>	<td>Less than</td>	<td>x < y</td></tr>
+-- <tr>
+-- <td>>=</td>	<td>Greater than or equal to</td>	<td>x >= y</td>	</tr>
+-- <tr>
+-- <td><=</td>	<td>Less than or equal to</td>	<td>x <= y</td>	</tr>
+-- </table>
+-- <h3>Java Logical Operators</h3>
+-- Logical operators are used to determine the logic between variables or values:<br>
+-- <table class="table table-bordered "><thead>
+-- <tr>
+-- <td>Operator</td>	<td>Name</td>	<td>Description</td>	</tr></thead>
+-- <tr><td>&&</td> 	<td>Logical and	Returns true if both statements are true</td>	<td>x < 5 &&  x < 10</td>
+-- </tr>
+-- <tr>
+-- <td>||</td> 	<td>Logical or	Returns true if one of the statements is true</td>	<td>x < 5 || x < 4</td>	</tr>
+-- <td>!</td>	<td>Logical not	Reverse the result, returns false if the result is true</td>	<td>!(x < 5 && x < 10)</td>	</tr></table></div>
+-- ', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (5, 'Java Variables', '<div class="db-div">
+-- <h2>Java Variables</h2>
+-- <p>Variables are containers for storing data values.
+--
+-- <p>In Java, there are different types of variables, for example:
+-- <ul>
+--
+-- <li>String - stores text, such as "Hello". String values are surrounded by double quotes</li>
+-- <li>int - stores integers (whole numbers), without decimals, such as 123 or -123</li>
+-- <li>float - stores floating point numbers, with decimals, such as 19.99 or -19.99</li>
+-- <li>char - stores single characters, such as ''a'' or ''B''. Char values are surrounded by single quotes</li>
+-- <li>boolean - stores values with two states: true or false</li></ul>
+-- <h2>Declaring (Creating) Variables</h2>
+-- <p>To create a variable, you must specify the type and assign it a value:<br>
+--
+-- <var>type variable = value;</var>
+-- <p>Where type is one of Java''s types (such as int or String), and variable is the name of the variable (such as x or name). The equal sign is used to assign values to the variable.
+-- <p>To create a variable that should store text, look at the following example:
+--
+-- <p>Create a variable called name of type String and assign it the value "John":</p>
+--
+-- <code>String name = "John";<br>
+-- System.out.println(name);<br>
+-- </code><br>
+-- <p>To create a variable that should store a number, look at the following example:
+--
+--
+-- <p>Create a variable called myNum of type int and assign it the value 15:
+-- <br>
+-- <code>int myNum = 15;
+-- System.out.println(myNum);
+-- </code><br>
+-- <p>You can also declare a variable without assigning the value, and assign the value later:
+-- <br>
+-- <code>
+-- int myNum;
+-- myNum = 15;
+-- System.out.println(myNum);
+-- </code><br>
+-- <p>A demonstration of how to declare variables of other types:
+-- <br>
+-- <code>
+-- int myNum = 5;<br>
+-- float myFloatNum = 5.99f;<br>
+-- char myLetter = ''D'';<br>
+-- boolean myBool = true;<br>
+-- String myText = "Hello";</code>
+-- <h3>Display Variables</h3>
+-- <p>The println() method is often used to display variables.
+--
+-- <p>To combine both text and a variable, use the + character:
+-- <br>
+-- <code>
+-- String name = "John";<br>
+-- System.out.println("Hello " + name);<br>
+-- </code>
+-- <p>You can also use the + character to add a variable to another variable:
+-- <br>
+-- <code>
+-- String firstName = "John ";<br>
+-- String lastName = "Doe";<br>
+-- String fullName = firstName + lastName;<br>
+-- System.out.println(fullName);<br>
+-- </code>
+-- <p>For numeric values, the + character works as a mathematical operator (notice that we use int (integer) variables here):
+-- <br>
+-- <code>
+-- int x = 5;<br>
+-- int y = 6;<br>
+-- System.out.println(x + y); // Print the value of x + y<br>
+-- </code>
+-- <p>From the example above, you can expect:
+--
+-- <ul><li>x stores the value 5</li>
+-- <li>y stores the value 6</li>
+-- <li>Then we use the println() method to display the value of x + y, which is 11</li></ul>
+-- <h3>Declare Many Variables</h3>
+-- <p>To declare more than one variable of the same type, use a comma-separated list:
+-- <br>
+-- <code>
+-- int x = 5, y = 6, z = 50;<br>
+-- System.out.println(x + y + z);<br>
+-- </code><br>
+-- <h3>Java Identifiers</h3>
+-- <p>All Java variables must be identified with unique names.
+--
+-- <p>These unique names are called identifiers.
+--
+-- <p>Identifiers can be short names (like x and y) or more descriptive names (age, sum, totalVolume).
+--
+-- <p>The general rules for constructing names for variables (unique identifiers) are:
+--
+-- <ul><li>Names can contain letters, digits, underscores, and dollar signs</li>
+-- <li>Names should begin with a letter</li>
+-- <li>Names can also begin with $ and _ (but we will not use it in this tutorial)</li>
+-- <li>Names are case sensitive ("myVar" and "myvar" are different variables)</li>
+-- <li>Names should start with a lowercase letter and it cannot contain whitespace</li>
+-- <li>Reserved words (like Java keywords, such as int or String) cannot be used as names</li></div>', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (6, 'Java Strings', '<div class="db-div">
+-- <h2>Java Strings</h2>
+-- <p>Strings are used for storing text.
+--
+-- <p>A String contains a collection of characters surrounded by double quotes:
+--
+-- <h3>Example</h3>
+-- <p>Create a variable of type String and assign it a value:
+-- <br>
+-- <code>String greeting = "Hello";<br>
+-- </code>
+-- <h2>String Length</h2>
+-- <p>A String in Java is actually an object, which contain methods that can perform certain operations on strings. For example, the length of a string can be found with the length() method:
+--
+-- <h3>Example</h3><br>
+--
+-- <code>String txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";<br>
+-- System.out.println("The length of the txt string is: " + txt.length());<br>
+-- </code>
+-- <h3>More String Methods</h3>
+-- <p>There are many string methods available, for example toUpperCase() and toLowerCase():
+--
+-- <br><code>
+-- String txt = "Hello World";<br>
+-- System.out.println(txt.toUpperCase());   // Outputs "HELLO WORLD"<br>
+-- System.out.println(txt.toLowerCase());   // Outputs "hello world"<br>
+-- </code><br>
+-- <h3>Finding a String in a String</h3>
+-- <p>The indexOf() method returns the index (the position) of the first occurrence of a specified text in a string (including whitespace):
+--
+-- <h3>Example</h3>
+-- <code>String txt = "Please locate where ''locate'' occurs!";<br>
+-- System.out.println(txt.indexOf("locate")); // Outputs 7<br></code><br>
+--
+-- <h2>String Concatenation</h2>
+-- <p>The + operator can be used between strings to add them together to make a new string. This is called concatenation:
+--
+-- <h3>Example</h3><br>
+-- <code>String firstName = "John";<br>
+-- String lastName = "Doe";<br>
+-- System.out.println(firstName + " " + lastName);<br>
+-- </code><br>
+--
+-- <p>You can also use the concat() method to concatenate two strings:
+--
+-- <h3>Example</h3><br>
+-- <code>String firstName = "John ";<br>
+-- String lastName = "Doe";<br>
+-- System.out.println(firstName.concat(lastName));<br>
+-- </code><br>
+-- <h2>Special Characters</h2>
+-- <p>Because strings must be written within quotes, Java will misunderstand this string, and generate an error:
+--
+-- <br><code>String txt = "We are the so-called "Vikings" from the north.";</code>
+-- <p>The solution to avoid this problem, is to use the backslash escape character.
+--
+-- <p>The backslash (\) escape character turns special characters into string characters:
+-- <table class="table table-bordered">
+-- <tr><td>Escape character</td>	<td>Result</td>	<td>Description</td></tr>
+-- <tr><td>\''</td>	<td>''</td>	<td>Single quote</td></tr>
+-- <tr><td>\"</td>	<td>"</td>	<td>Double quote</td></tr>
+-- <tr><td>\\</td>	<td>\</td>	<td>Backslash</td></tr>
+-- </table>
+-- <div class="db-div">
+-- <p>The sequence \"  inserts a double quote in a string:
+--
+-- <h3>Example</h3><br>
+-- <code>String txt = "We are the so-called \"Vikings\" from the north.";</code>
+--
+-- <p>The sequence \''  inserts a single quote in a string:
+--
+-- <h3>Example</h3>
+-- <br><code>String txt = "It\''s alright.";<br>
+-- </code>
+-- <p>The sequence \\  inserts a backslash in a string:
+--
+-- <h3>Example</h3>
+-- <br><code>String txt = "The character \\ is called backslash.";<br>
+-- </code>
+-- <p>Six other escape sequences are valid in Java:
+--
+-- <table class="table table-bordered"><tr><td>Code</td>	<td>Result</td>	</tr>
+-- <tr><td>\n</td>	<td>New Line</td>	</tr>
+-- <tr><td>\r</td>	<td>Carriage Return</td></tr>
+-- <tr><td>\t</td>	<td>Tab</td></tr>
+-- <tr><td>\b</td>	<td>Backspace</td></tr>
+-- <tr><td>\f</td>	<td>Form Feed</td></tr>
+-- </table>
+-- <div class="db-div">
+-- <h2>Adding Numbers and Strings</h2>
+--
+--
+-- <p>If you add two numbers, the result will be a number:
+--
+-- <h3>Example</h3>
+-- <br><code>int x = 10;<br>
+-- int y = 20;<br>
+-- int z = x + y;      // z will be 30 (an integer/number)<br>
+-- </code><br>
+-- <p>If you add two strings, the result will be a string concatenation:
+--
+-- <h3>Example</h3><br>
+-- <code>String x = "10";<br>
+-- String y = "20";<br>
+-- String z = x + y;   // z will be 1020 (a String)<br>
+-- </code><br>
+-- <p>If you add a number and a string, the result will be a string concatenation:
+--
+-- <h3>Example</h3><br>
+-- <code>String x = "10";<br>
+-- int y = 20;<br>
+-- String z = x + y;   // z will be 1020 (a String)<br>
+-- </code><br>
+-- </div></div>
+--
+-- ', 1);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (7, 'If-Else', '<div class="db-div">
+-- <h2>Java Conditions and If Statements</h2>
+-- <p>Java supports the usual logical conditions from mathematics:
+-- <ul>
+-- <li>Less than: a < b</li>
+-- <li>Less than or equal to: a <= b</li>
+-- <li>Greater than: a > b</li>
+-- <li>Greater than or equal to: a >= b</li>
+-- <li>Equal to a == b</li>
+-- <li>Not Equal to: a != b</li></ul>
+-- <p>You can use these conditions to perform different actions for different decisions.
+--
+-- <p>Java has the following conditional statements:
+-- <ul>
+-- <li>Use if to specify a block of code to be executed, if a specified condition is true</li>
+-- <li>Use else to specify a block of code to be executed, if the same condition is false</li>
+-- <li>Use else if to specify a new condition to test, if the first condition is false</li>
+-- <li>Use switch to specify many alternative blocks of code to be executed</li></ul>
+-- <p>The if Statement
+-- <p>Use the if statement to specify a block of Java code to be executed if a condition is true.
+--
+-- <h3>Syntax</h3><br>
+-- <code>if (condition) {<br>
+--   // block of code to be executed if the condition is true<br>
+-- }<br></code>
+-- <p>Note that if is in lowercase letters. Uppercase letters (If or IF) will generate an error.
+--
+-- <p>In the example below, we test two values to find out if 20 is greater than 18. If the condition is true, print some text:
+--
+-- <h3>Example</h3>
+-- <code>if (20 > 18) {<br>
+--   System.out.println("20 is greater than 18");<br>
+-- }<br>
+-- </code>
+-- <p>We can also test variables:
+--
+-- <h3>Example</h3>
+-- <code>int x = 20;<br>
+-- int y = 18;<br>
+-- if (x > y) {<br>
+--   System.out.println("x is greater than y");<br>
+-- }<br>
+-- </code>
+-- <p>Example explained
+--
+-- <p>In the example above we use two variables, x and y, to test whether x is greater than y (using the > operator). As x is 20, and y is 18, and we know that 20 is greater than 18, we print to the screen that "x is greater than y".
+-- <h3>The else Statement</h3>
+-- <p>Use the else statement to specify a block of code to be executed if the condition is false.
+-- <br>
+-- <code>Syntax<br>
+-- if (condition) {<br>
+--   // block of code to be executed if the condition is true<br>
+-- } else { <br>
+--   // block of code to be executed if the condition is false<br>
+-- } <br>
+-- </code><br>
+-- <h3>Example</h3>
+-- <code>
+-- int time = 20;<br>
+-- if (time < 18) {<br>
+--   System.out.println("Good day.");<br>
+-- } else {<br>
+--   System.out.println("Good evening.");<br>
+-- }<br>
+-- // Outputs "Good evening."<br>
+-- </code><br>
+-- <p>Example explained
+--
+-- <p>In the example above, time (20) is greater than 18, so the condition is false, so we move on to the else condition and print to the screen "Good evening". If the time was less than 18, the program would print "Good day".
+-- <h3>The else if Statement</h3>
+-- <p>Use the else if statement to specify a new condition if the first condition is false.
+--
+-- <h3>Syntax</h3>
+-- <code>if (condition1) {<br>
+--   // block of code to be executed if condition1 is true<br>
+-- } else if (condition2) {<br>
+--   // block of code to be executed if the condition1 is false and condition2 is true<br>
+-- } else {<br>
+--   // block of code to be executed if the condition1 is false and condition2 is false<br>
+-- }</code><br>
+-- <h3>Example</h3>
+-- <code>int time = 22;<br>
+-- if (time < 10) {<br>
+--   System.out.println("Good morning.");<br>
+-- } else if (time < 20) {<br>
+--   System.out.println("Good day.");<br>
+-- } else {<br>
+--   System.out.println("Good evening.");<br>
+-- }<br>
+-- // Outputs "Good evening."<br>
+-- </code>
+-- <p>Example explained
+--
+-- <p>In the example above, time (22) is greater than 10, so the first condition is false. The next condition, in the else if statement, is also false, so we move on to the else condition since condition1 and condition2 is both false - and print to the screen "Good evening".
+--
+-- <p>However, if the time was 14, our program would print "Good day."
+-- <h2>Short Hand If...Else (Ternary Operator)</h2>
+-- <p>If you have only one statement to execute, one for if, and one for else, you can put it all on the same line:
+--
+-- <h3>Syntax</h3><br>
+-- <code>variable = (condition) ? expressionTrue : expressionFalse;</code><br>
+-- <p>Instead of writing:
+--
+-- <h3>Example</h3>
+-- <code>int time = 20;<br>
+-- if (time < 18) {<br>
+--   System.out.println("Good day.");<br>
+-- } else {<br>
+--   System.out.println("Good evening.");<br>
+-- }<br>
+-- </code><br>
+-- <p>You can simply write:
+--
+-- <h3>Example</h3><br>
+-- <code>int time = 20;<br>
+-- String result = (time < 18) ? "Good day." : "Good evening.";<br>
+-- System.out.println(result);</code><br></div>', 2);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (8, 'Switch', '<div class="db-div"><h2>Java Switch Statements</h2>
+-- <p>Use the switch statement to select one of many code blocks to be executed.
+--
+-- <h3>Syntax</h3>
+-- <code>switch(expression) {<br>
+--   case x:<br>
+--     // code block<br>
+--     break;<br>
+--   case y:<br>
+--     // code block<br>
+--     break;<br>
+--   default:<br>
+--     // code block<br>
+-- }</code><br>
+-- <p>This is how it works:
+-- <ul>
+-- <li>The switch expression is evaluated once.</li>
+-- <li>The value of the expression is compared with the values of each case.</li>
+-- <li>If there is a match, the associated block of code is executed.</li>
+-- <li>The break and default keywords are optional, and will be described later in this chapter</li>
+-- </ul>
+-- <p>The example below uses the weekday number to calculate the weekday name:
+--
+-- <h3Example</h3><br>
+-- <code>int day = 4;<br>
+-- switch (day) {<br>
+--   case 1:<br>
+--     System.out.println("Monday");<br>
+--     break;<br>
+--   case 2:<br>
+--     System.out.println("Tuesday");<br>
+--     break;<br>
+--   case 3:<br>
+--     System.out.println("Wednesday");<br>
+--     break;<br>
+--   case 4:<br>
+--     System.out.println("Thursday");<br>
+--     break;<br>
+--   case 5:<br>
+--     System.out.println("Friday");<br>
+--     break;<br>
+--   case 6:<br>
+--     System.out.println("Saturday");<br>
+--     break;<br>
+--   case 7:<br>
+--     System.out.println("Sunday");<br>
+--     break;<br>
+-- }<br>
+-- // Outputs "Thursday" (day 4)</code><br>
+--
+-- <h3>The break Keyword</h3>
+-- <p>When Java reaches a break keyword, it breaks out of the switch block.
+--
+-- <p>This will stop the execution of more code and case testing inside the block.
+--
+-- <p>When a match is found, and the job is done, it''s time for a break. There is no need for more testing.
+--
+-- <p>A break can save a lot of execution time because it "ignores" the execution of all the rest of the code in the switch block.
+-- <h2>The default Keyword</h2>
+-- <p>The default keyword specifies some code to run if there is no case match:
+--
+-- <h3>Example</h3><br>
+-- <code>int day = 4;<br>
+-- switch (day) {<br>
+--   case 6:<br>
+--     System.out.println("Today is Saturday");<br>
+--     break;<br>
+--   case 7:<br>
+--     System.out.println("Today is Sunday");<br>
+--     break;<br>
+--   default:<br>
+--     System.out.println("Looking forward to the Weekend");<br>
+-- }<br>
+-- // Outputs "Looking forward to the Weekend"
+-- </code><br>
+-- <p>Note that if the default statement is used as the last statement in a switch block, it does not need a break.
+--
+-- </div>', 2);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (9, 'While Loop', '<div class="db-div">
+-- <h2>Java While Loop</h2>
+--
+-- <p>The while loop loops through a block of code as long as a specified condition is true:
+--
+-- <h3>Syntax</h3><br>
+-- <code>while (condition) {<br>
+--   // code block to be executed<br>
+-- }</code><br>
+-- <p>In the example below, the code in the loop will run, over and over again, as long as a variable (i) is less than 5:
+--
+-- <h3>Example</h3>
+-- <br><code>int i = 0;<br>
+-- while (i < 5) {<br>
+--   System.out.println(i);<br>
+--   i++;<br>
+-- }<br>
+-- </code>
+-- <p>Note: Do not forget to increase the variable used in the condition, otherwise the loop will never end!
+--
+-- <h2>The Do/While Loop</h2>
+-- <p>The do/while loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
+--
+-- <h3>Syntax</h3>
+-- <br><code>do {<br>
+--   // code block to be executed<br>
+-- }<br>
+-- while (condition);<br></code>
+-- <p>The example below uses a do/while loop. The loop will always be executed at least once, even if the condition is false, because the code block is executed before the condition is tested:
+--
+-- <h3>Example</h3><br>
+-- <code>int i = 0;<br>
+-- do {<br>
+--   System.out.println(i);<br>
+--   i++;<br>
+-- }<br>
+-- while (i < 5);<br>
+-- </code>
+-- <p>Do not forget to increase the variable used in the condition, otherwise the loop will never end!</div>', 2);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (10, 'For Loop', '<div class="db-div">
+-- <h2>Java For Loop</h2>
+-- <p>The for loop loops through a block of code a number of times.
+-- <br>
+-- <h3>Syntax</h3><br>
+-- <code>for (statement 1; statement 2; statement 3) {<br>
+--   // code block to be executed<br>
+-- }<br></code>
+-- <p>Statement 1 is executed (one time) before the execution of the code block.
+--
+-- <p>Statement 2 defines the condition for executing the code block.
+--
+-- <p>Statement 3 is executed (every time) after the code block has been executed.
+-- <br>
+-- <p>The example below will print the numbers 0 to 4:
+--
+-- <h3>Example</h3>
+-- <br><code>for (int i = 0; i < 5; i++) {<br>
+--   System.out.println(i);<br>
+-- }<br>
+-- </code>
+-- <p>Example explained
+--
+-- <p>Statement 1 sets a variable before the loop starts (int i = 0).
+--
+-- <p>Statement 2 defines the condition for the loop to run (i must be less than 5). If the condition is true, the loop will start over again, if it is false, the loop will end.
+--
+-- <p>Statement 3 increases a value (i++) each time the code block in the loop has been executed.
+--
+-- <h3>Another Example</h3>
+-- <p>This example will only print even values between 0 and 10:
+-- <br>
+-- <h3>Example</h3>
+-- <code>for (int i = 0; i <= 10; i = i + 2) {<br>
+--   System.out.println(i);<br>
+-- }<br>
+-- </code><br>
+-- <h2>For-Each Loop</h2>
+-- <p>There is also a "for-each" loop, which is used exclusively to loop through elements in an array:
+-- <br>
+-- <h3>Syntax</h3>
+-- <code>for (type variable : arrayname) {<br>
+--   // code block to be executed<br>
+-- }<br></code>
+-- <p>The following example outputs all elements in the cars array, using a "for-each" loop:
+-- <br>
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- for (String i : cars) {<br>
+--   System.out.println(i);<br>
+-- }<br></code></div>', 2);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (11, 'Break/Continue', '<div class="db-div">
+-- <h2>Java Break</h2>
+-- <p>You have already seen the break statement used in an earlier chapter of this tutorial. It was used to "jump out" of a switch statement.
+--
+-- <p>The break statement can also be used to jump out of a loop.
+--
+-- <p>This example jumps out of the loop when i is equal to 4:
+--
+-- <p><h3>Example</h3>
+-- <code>for (int i = 0; i < 10; i++) {<br>
+--   if (i == 4) {<br>
+--     break;<br>
+--   }<br>
+--   System.out.println(i);<br>
+-- }</code>
+-- <h2>Java Continue</h2>
+-- <p>The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+-- <br>
+-- <p>This example skips the value of 4:
+--
+-- <h3>Example</h3>
+-- <code>for (int i = 0; i < 10; i++) {<br>
+--   if (i == 4) {<br>
+--     continue;<br>
+--   }<br>
+--   System.out.println(i);<br>
+-- } </code>
+--  <h2>Break and Continue in While Loop</h2>
+-- <p>You can also use break and continue in while loops:
+-- <br>
+-- <h3>Break Example</h3>
+-- <code>int i = 0;<br>
+-- while (i < 10) {<br>
+--   System.out.println(i);<br>
+--   i++;<br>
+--   if (i == 4) {<br>
+--     break;<br>
+--   }<br>
+-- } <br>
+-- </code><br>
+-- <h3>Continue Example</h3>
+-- <code>int i = 0;<br>
+-- while (i < 10) {<br>
+--   if (i == 4) {<br>
+--     i++;<br>
+--     continue;<br>
+--   }<br>
+--   System.out.println(i);<br>
+--   i++;<br>
+-- } </code></div>', 2);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (12, 'Arrays', '<div class="db-div"><h2>Java Arrays</h2>
+-- <p>Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+--
+-- <p>To declare an array, define the variable type with square brackets:
+-- <br>
+-- <code>String[] cars;</code><br><br>
+-- <p>We have now declared a variable that holds an array of strings. To insert values to it, we can use an array literal - place the values in a comma-separated list, inside curly braces:
+-- <br>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};</code><br><br>
+-- <h2>Access the Elements of an Array</h2>
+-- <p>You access an array element by referring to the index number.
+--
+-- <p>This statement accesses the value of the first element in cars:
+--
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- System.out.println(cars[0]);<br>
+-- // Outputs Volvo<br>
+-- </code><br>
+-- <p>Note: Array indexes start with 0: [0] is the first element. [1] is the second element, etc.
+-- <br><br>
+-- <h2>Change an Array Element</h2>
+-- <p>To change the value of a specific element, refer to the index number:
+--
+-- <h3>Example</h3>
+-- <code>cars[0] = "Opel";</code><br><br>
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- cars[0] = "Opel";<br>
+-- System.out.println(cars[0]);<br>
+-- // Now outputs Opel instead of Volvo</code><br><br>
+-- <h2>Array Length</h2>
+-- <p>To find out how many elements an array has, use the length property:
+--
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- System.out.println(cars.length);<br>
+-- // Outputs 4</code><br><br></div>', 3);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (13, 'For loop', '<div class="db-div"><h2>Loop Through an Array</h2>
+-- <p>You can loop through the array elements with the for loop, and use the length property to specify how many times the loop should run.
+--
+-- <p>The following example outputs all elements in the cars array:
+--
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- for (int i = 0; i < cars.length; i++) {<br>
+--   System.out.println(cars[i]);<br>
+-- }</code><br><br>
+-- <h2>Loop Through an Array with For-Each</h2>
+-- <p>There is also a "for-each" loop, which is used exclusively to loop through elements in arrays:
+--
+-- <h3>Syntax</h3>
+-- <code>for (type variable : arrayname) {<br>
+--   ...<br>
+-- }</code><br><br>
+-- <p>The following example outputs all elements in the cars array, using a "for-each" loop:
+--
+-- <h3>Example</h3>
+-- <code>String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};<br>
+-- for (String i : cars) {<br>
+--   System.out.println(i);<br>
+-- }</code><br><br>
+--
+-- <p>The example above can be read like this: for each String element (called i - as in index) in cars, print out the value of i.
+--
+-- <p>If you compare the for loop and for-each loop, you will see that the for-each method is easier to write, it does not require a counter (using the length property), and it is more readable.</div>', 3);
+-- INSERT INTO public.course (course_id, course_name, course_theory, module_id) VALUES (14, 'Multidimensional', '<div class="db-div"><h2>Multidimensional Arrays</h2>
+-- <p>A multidimensional array is an array containing one or more arrays.
+--
+-- <p>To create a two-dimensional array, add each array within its own set of curly braces:
+--
+-- <h3>Example</h3>
+-- <code>int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };<br>
+-- myNumbers is now an array with two arrays as its elements.<br>
+-- </code><br><br>
+-- <p>To access the elements of the myNumbers array, specify two indexes: one for the array, and one for the element inside that array. This example accesses the third element (2) in the second array (1) of myNumbers:
+--
+-- <h3>Example</h3>
+-- <code>int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };<br>
+-- int x = myNumbers[1][2];<br>
+-- System.out.println(x); // Outputs 7<br>
+-- </code><br><br>
+-- <p>We can also use a for loop inside another for loop to get the elements of a two-dimensional array (we still have to point to the two indexes):
+--
+-- <h3>Example</h3>
+-- <code>public class MyClass {<br>
+-- &nbsp;public static void main(String[] args) {<br>
+-- &nbsp;&nbsp;int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };<br>
+-- &nbsp;&nbsp;for (int i = 0; i < myNumbers.length; ++i) {<br>
+-- &nbsp;&nbsp;&nbsp;for(int j = 0; j < myNumbers[i].length; ++j) {<br>
+-- &nbsp;&nbsp;&nbsp;System.out.println(myNumbers[i][j]);<br>
+-- &nbsp;&nbsp;&nbsp;}<br>
+-- &nbsp;&nbsp;}<br>
+-- &nbsp;}<br>
+-- }<br></code></div>', 3);
+--
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (1, '<p>Which one of the following statements is true? </p>', 1, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (2, '<p>
+-- Choose the missing part of the code below to output "Hello World".</p>
+-- <pre class="code">public class MyClass {
+--   public static void main(String[] args) {
+--     __________("Hello World");
+--   }
+-- }</pre>', 2, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (3, '<p>Choose the missing part to create the comment</p>
+-- <p>___This is a single-line comment</p>', 3, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (4, '<p>Choose the correct operator to increase the value of the variable x by 1.</p><br>
+-- <pre class="code">int x = 10;<br>
+-- __x;</pre>', 4, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (5, '<p>Display the sum of 5 + 10, using two variables: x and y. </p>
+-- <br><pre class="code">_________;<br>
+-- <var>int y = 10;<br>
+-- System.out.println(x + y);</var>
+-- ', 5, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (6, '<p>Use the correct operator to concatenate two strings:</p><br>
+--
+-- <pre class="code">String firstName = "John ";<br>
+-- String lastName = "Doe";<br>
+-- System.out.println(firstName _ lastName);</pre>', 6, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (7, '<p>Print "Hello World" if x is equal to y.</p><br>
+--
+-- <pre class="code">
+-- int x = 50;<br>
+-- int y = 50;<br>
+-- __ (x __ y) { <br>
+--   System.out.println("Hello World");<br>
+-- }</pre>', 7, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (8, '<p>What is the output of the below example?</p>
+-- <pre class="code" style="line-height:78%;">int day = 4;<br>
+--     switch (day) {<br>
+--       case 1:<br>
+--         System.out.println("Monday");<br>
+--         break;<br>
+--       case 2:<br>
+--         System.out.println("Tuesday");<br>
+--         break;<br>
+--       case 3:<br>
+--         System.out.println("Wednesday");<br>
+--         break;<br>
+--       case 4:<br>
+--         System.out.println("Thursday");<br>
+--         break;<br>
+--       case 5:<br>
+--         System.out.println("Friday");<br>
+--         break;<br>
+--       case 6:<br>
+--         System.out.println("Saturday");<br>
+--         break;<br>
+--       case 7:<br>
+--         System.out.println("Sunday");<br>
+--         break;<br>
+--     }<br></code>', 8, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (9, '<p>What is the last number that prints the example below?</p>
+-- <pre class="code" style="line-height:78%;">public class MyClass {<br>
+--   public static void main(String[] args) {<br>
+--     int i = 0;<br>
+--     while (i < 5) {<br>
+--       System.out.println(i);<br>
+--       i++;<br>
+--     }  <br>
+--   }<br>
+-- }<br></pre>', 9, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (10, '<p>Print "Yes" 5 times with a for loop: </p>
+-- <pre class="code" style="line-height:78%;">for (int i = 0; ____ ; i++) { <br>
+--   System.out.println("Yes");<br>
+-- }<br></pre>', 10, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (11, '<p>Which value skips the example below? </p>
+-- <pre class="code" style="line-height:78%;">public class MyClass {<br>
+--   public static void main(String[] args) {<br>
+--     for (int i = 0; i < 10; i++) {<br>
+--       if (i == 4) {<br>
+--         continue;<br>
+--       }<br>
+--       System.out.println(i);<br>
+--     }  <br>
+--   }<br>
+-- }<br></pre>', 11, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (12, '<p>Print the second item in the cars array.</p>
+-- <pre class="code" style="line-height:78%;">String[] cars = {"Volvo", "BMW", "Ford"};<br>
+-- System.out.println(____);</pre>', 12, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (13, '<p>Loop through the items in the cars array.</p>
+-- <pre class="code" style="line-height:78%;">String[] cars = {"Volvo", "BMW", "Ford"};<br>
+--  ____________ {<br>
+--   System.out.println(i);<br>
+-- }<br></pre>', 13, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (14, '<p>Insert the missing parts to create a two-dimensional array.</p>
+-- <pre class="code">______ myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };</pre>', 14, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (15, '<p>What is the output of this program?</p>
+--
+-- <pre class="code" style="line-height:78%;">class increment { <br>
+--         public static void main(String args[]) <br>
+--         {        <br>
+--              int g = 3;<br>
+--              System.out.print(++g * 8);<br>
+--         } <br>
+--     }</pre>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (16, '<p>What will be the output of these statement?</p>
+-- <pre class="code" style="line-height:78%;">class output {<br>
+--         public static void main(String args[]) <br>
+--         {<br>
+--             double a, b,c;<br>
+--             a = 3.0/0;<br>
+--             b = 0/4.0;<br>
+--             c=0/0.0;<br>
+--
+-- 	    System.out.println(a);<br>
+--             System.out.println(b);<br>
+--             System.out.println(c);<br>
+--         } <br>
+--     }</pre>
+--
+-- ', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (17, '<p>What is the output of this program?</p>
+--
+-- <pre class="code" style="line-height:78%;">class mainclass {<br>
+--         public static void main(String args[]) <br>
+--         {<br>
+--             boolean var1 = true;<br>
+-- 	    boolean var2 = false;<br>
+-- 	    if (var1)<br>
+-- 	        System.out.println(var1);<br>
+-- 	    else<br>
+-- 	        System.out.println(var2);<br>
+--        } <br>
+--     }</pre>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (18, '<p>Which of these can be returned by the operator &?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (19, '<p> Which of these is an incorrect string literal?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (20, '<p>Which method can be defined only once in a program?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (21, '<p>What is the return type of a method that does not return any value?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (22, '<p>What is the output of this program?</p>
+--
+-- <pre class="code" style="line-height:78%;">class area <br>
+--     {<br>
+--         int width;<br>
+--         int length;<br>
+--         int volume;<br>
+--         area() <br>
+--         {<br>
+--            width=5;<br>
+--            length=6;<br>
+--         }<br>
+--         void volume()<br>
+--         {<br>
+--              volume = width*length*height;<br>
+--         } <br>
+--     }    <br>
+--     class cons_method<br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {<br>
+--             area obj = new area();<br>
+--             obj.volume();<br>
+--             System.out.println(obj.volume);<br>
+--         } <br>
+--     }</pre>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (23, '<p>Which of these operators can be used to concatenate two or more String objects?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (24, '<p>Which of this method of class String is used to obtain a length of String object?</p>', null, 1);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (25, '<p>How many choices are possible when using a single if-else statement?</p>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (26, '<p>What does the following code fragment write to the monitor?</p>
+-- <pre class="code">int sum = 14;<br>
+-- if ( sum < 20 )<br>
+--   System.out.print("Under ");<br>
+-- else<br>
+--   System.out.print("Over  ");<br>
+-- System.out.println("the limit.");<br></pre>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (27, '<p> Evaluate (to true or false) each of the following expressions:</p>
+--
+-- <pre class="code">14 <= 14 , 14 < 14 , -9 > -25 , -25  >  -9 </pre>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (28, '<p>Which of these selection statements test only for equality?</p>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (29, '<p>Which of the following loops will execute the body of loop even when condition controlling the loop is initially false?</p?', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (30, '<p>Which of these jump statements can skip processing the remainder of the code in its body for a particular iteration?</p>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (31, '<p>What is the output of this program?</p>
+--
+-- <pre class="code" style="line-height:78%;">class selection_statements <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {<br>
+--             int var1 = 5;<br>
+--             int var2 = 6;<br>
+--             if ((var2 = 1) == var1)<br>
+--                 System.out.print(var2);<br>
+--             else <br>
+--                 System.out.print(++var2);<br>
+--         } </pre>
+--     }', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (32, '<p>What is the output of this program?</p>
+-- <pre class="code" style="line-height:78%;">class jump_statements {<br>
+--         public static void main(String args[]) <br>
+--         {        <br>
+--              int x = 2;<br>
+--              int y = 0;<br>
+--              for ( ; y < 10; ++y)<br>
+--              {<br>
+--                  if (y % x == 0)<br>
+--                      continue;  <br>
+--                  else if (y == 8)<br>
+--                       break;<br>
+--                  else<br>
+--                     System.out.print(y + " ");<br>
+--              }<br></pre>
+--         } <br>
+--     }</pre>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (33, '<p>What is the output of this program?</p>
+--
+-- <pre class="code" style="line-height:78%"> class comma_operator <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {    <br>
+--              int sum = 0;<br>
+--              for (int i = 0, j = 0; i < 5 & j < 5; ++i, j = i + 1)<br>
+--                  sum += i;<br>
+--  	     System.out.println(sum);<br>
+--         } <br>
+--     }</pre>', null, 2);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (34, '<p>Which of these is an incorrect array declaration?</p>', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (35, '<p>What will this code print?</p>', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (36, '<p>Which of these is an incorrect Statement?</p>', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (37, '<p>What is the output of this program?</p>
+-- <pre class="code" style="line-height:78%">class array_output <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {<br>
+--             int array_variable [] = new int[10];<br>
+-- 	    for (int i = 0; i < 10; ++i) <br>
+--             {<br>
+--                 array_variable[i] = i;<br>
+--                 System.out.print(array_variable[i] + " ");<br>
+--                 i++;<br>
+--             }<br>
+--         } <br>
+--     }</pre>
+--
+-- ', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (38, '<p>What is the output of this program?</p>
+-- <pre class="code" style="line-height:78%">
+--     class multidimention_array <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {<br>
+--             int arr[][] = new int[3][];<br>
+--             arr[0] = new int[1];<br>
+--             arr[1] = new int[2];<br>
+--             arr[2] = new int[3];    <br>
+-- 	    int sum = 0;<br>
+-- 	    for (int i = 0; i < 3; ++i)<br>
+-- 	        for (int j = 0; j < i + 1; ++j)<br>
+--                     arr[i][j] = j + 1;<br>
+-- 	    for (int i = 0; i < 3; ++i) <br>
+-- 	        for (int j = 0; j < i + 1; ++j)<br>
+--                     sum + = arr[i][j];<br>
+-- 	    System.out.print(sum); 	<br>
+--         } <br>
+--     }</pre>', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (39, '<p>What is the output of this program?</p>
+-- <pre class="code" style="line-height:78%">
+--     class evaluate <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--             {<br>
+-- 	        int arr[] = new int[] {0 , 1, 2, 3, 4, 5, 6, 7, 8, 9};<br>
+-- 	        int n = 6;<br>
+--                 n = arr[arr[n] / 2];<br>
+-- 	        System.out.println(arr[n] / 2);<br>
+--             } <br>
+--     }</pre>', null, 3);
+-- INSERT INTO public.question (question_id, question_text, course_id, module_id) VALUES (40, '<p>What is the output of this program?</p>
+-- <pre class="code" style="line-height:78%">
+--     class array_output <br>
+--     {<br>
+--         public static void main(String args[])<br>
+--         {<br>
+--             char array_variable [] = new char[10];<br>
+-- 	    for (int i = 0; i < 10; ++i) <br>
+--             {<br>
+--                 array_variable[i] = ''i'';<br>
+--                 System.out.print(array_variable[i] + "");<br>
+--             }<br>
+--         } <br>
+--     }</pre>', null, 3);
+--
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (4, 'Java is used only in web and mobile applications', false, 1) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (6, 'Java is used only in NASA''s space related applications', false, 1) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (5, 'Java has a huge developer community', true, 1) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (2, 'Println', false, 2) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (1, '  System.out.print.ln', true, 2) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (3, '  Output', false, 2) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (8, '/*', false, 3) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (7, ' //', true, 3) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (9, ' #', false, 3) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (12, '+=', false, 4) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (11, '+1', false, 4) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (10, '++', true, 4) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (14, 'var x = 5', false, 5) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (15, 'string x = 5', false, 5) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (13, 'int x = 5', true, 5) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (16, ',', false, 6) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (17, '+', true, 6) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (18, '&', false, 6) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (21, 'if (x === y)', false, 7) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (20, 'if (x == y)', true, 7) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (19, 'if (x = y)', false, 7) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (24, 'Thursday', true, 8) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (23, 'Monday', false, 8) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (22, 'Friday', false, 8) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (25, '5', false, 9) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (26, '4', true, 9) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (27, '0', false, 9) ;
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (29, 'i < = 5', false, 10);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (30, 'i < 6', false, 10);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (28, 'i < 5', true, 10);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (32, '4', true, 11);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (33, '10', false, 11);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (31, '0', false, 11);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (35, 'cars[2]', false, 12);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (34, 'cars[1]', true, 12);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (36, 'cars(2)', false, 12);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (39, 'for (i: cars)', false, 13);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (37, 'for (i in cars)', false, 13);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (38, 'for (String i: cars)', true, 13);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (40, 'int [ ][ ]', true, 14);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (41, 'int [ ]', false, 14);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (42, '[ ]', false, 14);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (45, '32', true, 15);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (43, '25', false, 15);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (44, '24', false, 15);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (47, 'NaN', false, 16);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (46, 'Infinity', false, 16);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (49, 'All of the mentioned', true, 16);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (48, '0.0', false, 16);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (52, 'true', true, 17);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (53, 'false', false, 17);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (51, '1', false, 17);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (50, '0', false, 17);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (56, 'Integer or Boolean', true, 18);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (54, 'Integer', false, 18);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (55, 'Boolean', false, 18);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (58, '"Hello\nWorld"', false, 19);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (57, '"Hello World"', false, 19);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (59, '"Hello <br> World "', true, 19);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (62, 'static method', false, 20);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (61, 'private method', false, 20);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (60, 'main method', true, 20);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (63, 'void', true, 21);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (64, 'int', false, 21);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (65, 'float', false, 21);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (66, 'error', true, 22);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (68, '1', false, 22);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (67, '0', false, 22);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (71, '||', false, 23);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (69, '+', true, 23);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (70, '&', false, 23);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (73, 'size()', false, 24);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (72, 'length()', true, 24);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (74, 'get()', false, 24);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (77, '3', false, 25);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (75, '2', true, 25);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (76, '1', false, 25);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (78, 'Under the limit', true, 26);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (79, 'Under', false, 26);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (80, 'Over', false, 26);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (81, 'true,true,false,false', false, 27);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (82, 'true,false,true,false', true, 27);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (83, 'true,false,false,false', false, 27);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (84, 'switch', true, 28);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (85, 'if', false, 28);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (86, 'None of the above', false, 28);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (88, 'while', false, 29);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (89, 'for', false, 29);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (87, 'do-while', true, 29);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (92, 'exit', false, 30);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (91, 'continue', true, 30);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (90, 'break', false, 30);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (95, '3', false, 31);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (94, '2', true, 31);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (93, '1', false, 31);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (97, '2 4 6 8', false, 32);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (98, '1 3 5 7 9', true, 32);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (96, '1 3 5 7', false, 32);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (99, '6', true, 33);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (100, '5', false, 33);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (101, '14', false, 33);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (103, 'int arr[] = new int[5]', false, 34);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (102, 'int arr[] = int [5] new', true, 34);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (104, 'int [] arr = new int[5]', false, 34);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (107, 'value stored in arr[0]', false, 35);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (105, 'Class name@ hashcode in hexadecimal form', true, 35);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (106, '0', false, 35);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (108, 'It is necessary to use new operator to initialize an array', true, 36);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (109, 'Array can be initialized when they are declared', false, 36);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (110, 'Array can be initialized using comma separated expressions surrounded by curly braces', false, 36);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (113, '1 3 5 7 9', false, 37);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (111, '0 2 4 6 8', true, 37);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (112, '0 1 2 3 4 5 6 7 8 9', false, 37);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (116, '13', false, 38);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (115, '11', false, 38);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (114, '10', true, 38);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (119, '6', false, 39);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (117, '1', true, 39);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (118, '0', false, 39);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (121, 'i j k l m n o p q r', false, 40);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (120, 'i i i i i i i i i i', true, 40);
+-- INSERT INTO public.answer (answer_id, answer_text, is_correct, question_id) VALUES (122, '0 1 2 3 4

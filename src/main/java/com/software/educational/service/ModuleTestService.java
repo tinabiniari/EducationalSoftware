@@ -3,11 +3,12 @@ package com.software.educational.service;
 import com.software.educational.data.model.ModuleTest;
 import com.software.educational.data.repository.AnswerRepository;
 import com.software.educational.data.repository.ModuleTestRepository;
+import com.software.educational.data.repository.ProgressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DecimalFormat;
 import java.util.*;
 
 @Service
@@ -17,10 +18,9 @@ public class ModuleTestService {
     ModuleTestRepository moduleTestRepository;
     @Autowired
     AnswerRepository answerRepository;
+    @Autowired
+    ProgressRepository progressRepository;
 
-    public ModuleTest saveResults(ModuleTest moduleTest){
-        return moduleTestRepository.save(moduleTest);
-    }
 
     public ModuleTest saveTestResults(ModuleTest moduleTest) {
 
@@ -69,7 +69,6 @@ public class ModuleTestService {
             correctAnswersString.add(String.valueOf(myInt));
         }
 
-//        correctAnswersString.retainAll(getUserInputValues(httpServletRequest));
         return correctAnswersString;
     }
 
@@ -80,9 +79,28 @@ public class ModuleTestService {
         }
 
         trueAnswersStrings.retainAll(getUserInputValues(httpServletRequest));
-        DecimalFormat decimalFormat = new DecimalFormat("####0.00");
 
         return ((double)((trueAnswersStrings.size()*100)/(getUserInputValues(httpServletRequest).size()-1)));
+    }
+
+    public ModelAndView handleResults(Long userId,Double myscore,Long module_id, ModelAndView modelAndView) {
+        if (myscore < 50) {
+            modelAndView.addObject("resultMessage", "You failed Test " + module_id.intValue() + " with score " + myscore.intValue() + "%.<br> Please read again the theory of the module <br> (The courses of this module will be set to non-read)<br>Below you can see the answers");
+            progressRepository.setProgressFalse(false,userId,module_id);
+            modelAndView.addObject("moduleId", module_id);
+            modelAndView.addObject("alert", "alert-danger");
+            modelAndView.addObject("buttonMessage", "Check again the courses");
+            return modelAndView;
+        }
+        if (myscore >= 50) {
+            modelAndView.addObject("resultMessage", "Congratulations! <br> You passed Test " + module_id.intValue() + " with score " + myscore.intValue() + "%. <br> Keep up the good work!<br>Below you can see the answers");
+            modelAndView.addObject("moduleId", module_id + 1);
+            modelAndView.addObject("alert", "alert-success");
+
+            modelAndView.addObject("buttonMessage", "Continue");
+            return modelAndView;
+        }
+        return modelAndView;
     }
 
     public  List<Long> getFalseAnswers(){
@@ -96,6 +114,8 @@ public class ModuleTestService {
         return moduleTestRepository.findByUserId(userId);
     }
 
-
+    public Double countCompletedTests(Long user_id){
+        return moduleTestRepository.countCompletedTests(user_id);
+    }
 
 }

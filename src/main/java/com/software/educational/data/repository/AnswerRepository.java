@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer,Long> {
-    List<Answer> findAnswerByQuestionId(long id);
 
     @Query(nativeQuery = true,value = "SELECT answer_id from answer where is_correct=false")
     public  List<Long> findFalseAnswersByIsCorrect();
@@ -17,9 +16,6 @@ public interface AnswerRepository extends JpaRepository<Answer,Long> {
 
     @Query(nativeQuery = true,value = "SELECT answer_id from answer where is_correct=true")
     public  List<Long> findCorrectAnswersByIsCorrect();
-
-//    @Query(nativeQuery = true,value = "SELECT is_correct from answer")
-//    public List<Boolean> findCorrectOrFalse();
 
 
 

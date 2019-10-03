@@ -4,7 +4,6 @@ import com.software.educational.data.model.*;
 import com.software.educational.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -37,7 +35,6 @@ public class TestController {
     ModuleTestService moduleTestService;
 
 
-
     @GetMapping(value = "/test", params = {"courseId"})
     public ModelAndView getTest(@RequestParam("courseId") long courseId) {
         ModelAndView modelAndView = new ModelAndView();
@@ -47,85 +44,7 @@ public class TestController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/moduleTest", params = {"moduleId"})
-    public ModelAndView getQuestionPerModule(@RequestParam("moduleId") long moduleId) {
-        ModelAndView modelAndView=new ModelAndView();
-        Module module = moduleService.getModulebyId(moduleId);
-        modelAndView.addObject("question", questionService.getQuestionbyModuleId(module.getModuleId()));
-        modelAndView.addObject("moduleId",moduleId);
-        List<Long> falseAnswers=moduleTestService.getFalseAnswers();
-        List<Object> newList = new ArrayList<Object>(falseAnswers.size());
-        List<Long> correctAnswers=moduleTestService.getCorrectAnswers();
-        List<Object> trueAnswers = new ArrayList<Object>(correctAnswers.size());
-
-
-        modelAndView.addObject("trueList",trueAnswers);
-        modelAndView.addObject("newList",newList);
-        modelAndView.addObject("type","radio");
-        modelAndView.addObject("visibility","btn btn-info");
-
-        modelAndView.addObject("moduleName",module.getModuleName());
-        modelAndView.setViewName("module_test");
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/testList")
-    public ModelAndView getTestList(ModelAndView modelAndView){
-        modelAndView.addObject("modules",moduleService.getAllModules());
-        modelAndView.setViewName("test_list");
-        return modelAndView;
-    }
-
-    @PostMapping(value = "/moduleTest")
-    public ModelAndView submitTest(@Valid @ModelAttribute("answer")Answer answer, Principal principal, HttpServletRequest httpServletRequest, BindingResult bindingResult){
-        User user=userService.findByEmail(principal.getName());
-        String moduleId = httpServletRequest.getParameter("moduleId");
-        long module_id=Long.parseLong(moduleId);
-        ModuleTest moduleTest=new ModuleTest();
-        ModelAndView modelAndView=getQuestionPerModule(module_id);
-
-        List<Object> list=new ArrayList<>();
-        list.addAll(httpServletRequest.getParameterMap().values());
-        list.remove(0);
-
-
-        Double myscore=moduleTestService.getScore(httpServletRequest);
-        moduleTest.setUserId(user.getUserId());
-        moduleTest.setModuleId(module_id);
-        moduleTest.setScore(myscore);
-        moduleTestService.saveTestResults(moduleTest);
-        modelAndView.addObject("newList",moduleTestService.getWrongAnswers(httpServletRequest));
-        modelAndView.addObject("trueList",moduleTestService.getCorrect(httpServletRequest));
-        modelAndView.addObject("type","hidden");
-        modelAndView.addObject("visibility","hide");
-
-        modelAndView.setViewName("module_test");
-        if(bindingResult.hasErrors()){
-            return modelAndView;
-        }
-
-
-        if(myscore < 50){
-            modelAndView.addObject("resultMessage","You failed Test " +moduleId+ "with score "+myscore+".<br> Please read again the theory of the module <br> (The courses of this module will be set to non-read)");
-            modelAndView.addObject("moduleId",module_id);
-            modelAndView.addObject("buttonMessage","Check again the courses");
-            return modelAndView;
-        }
-        if(myscore>50){
-            modelAndView.addObject("resultMessage","Congratulations! <br> You passed Test " +moduleId+ " with score " +myscore+ "% <br> Keep up the good work!");
-            modelAndView.addObject("moduleId",module_id+1);
-            modelAndView.addObject("buttonMessage","Continue");
-            return modelAndView;
-        }
-
-
-        return modelAndView;
-
-
-    }
-
-
-    @PostMapping(value="/test")
+    @PostMapping(value = "/test")
     public ModelAndView submitAnswer(@RequestParam("courseId") long courseId, @RequestParam("questionId") long questionId, @ModelAttribute("question") Question question, HttpServletRequest httpServletRequest, Principal principal) {
         String value = httpServletRequest.getParameter(String.valueOf(questionId));
         long moduleId = courseService.findById(courseId).getModuleId();
@@ -138,7 +57,6 @@ public class TestController {
         progress.setCourseRead(true);
 
 
-
         if ((value.equals("true"))) {
             progressService.saveProgress(progress);
             if (courseId < maxCourse) {
@@ -146,15 +64,82 @@ public class TestController {
                 return new ModelAndView("redirect:/theory?courseId=" + newCourseId);
 
             }
-            long nextModule = moduleId + 1;
-            return new ModelAndView("redirect:/courses?id="+nextModule);
+            ModelAndView md = new ModelAndView();
+            md.addObject("successTitle", "Congratulations!");
+            md.addObject("successMessage", "You have read all the courses from Module "
+                    + moduleId + " . "  +
+                    "<br> Take the test for the Module " + moduleId + " and check your knowledge!");
+            md.addObject("moduleId", moduleId);
+            md.setViewName("success");
+            return md;
 
         }
-        ModelAndView modelAndView=getTest(courseId);
-        modelAndView.addObject("errorMessage","Wrong answer! Please try again");
-        modelAndView.addObject("alert","alert alert-danger");
+        ModelAndView modelAndView = getTest(courseId);
+        modelAndView.addObject("errorMessage", "Wrong answer! Please try again");
+        modelAndView.addObject("alert", "alert alert-danger");
 
         return modelAndView;
 
     }
+
+    @GetMapping(value = "/moduleTest", params = {"moduleId"})
+    public ModelAndView getQuestionPerModule(@RequestParam("moduleId") long moduleId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Module module = moduleService.getModulebyId(moduleId);
+        List<Question> questionList=questionService.getQuestionbyModuleId(moduleId); //returns 10 random question from this module
+        modelAndView.addObject("question", questionList);
+        modelAndView.addObject("moduleId", moduleId);
+        List<Long> falseAnswers = moduleTestService.getFalseAnswers();
+        List<Object> newList = new ArrayList<Object>(falseAnswers.size());
+        List<Long> correctAnswers = moduleTestService.getCorrectAnswers();
+        List<Object> trueAnswers = new ArrayList<Object>(correctAnswers.size());
+        modelAndView.addObject("trueList", trueAnswers);
+        modelAndView.addObject("newList", newList);
+        modelAndView.addObject("type", "radio");
+        modelAndView.addObject("visibility", "submit-btn btn btn-info");
+        modelAndView.addObject("moduleName", module.getModuleName());
+        modelAndView.setViewName("module_test");
+        return modelAndView;
+    }
+    @PostMapping(value = "/moduleTest")
+    public ModelAndView submitTest(Principal principal, HttpServletRequest httpServletRequest,ModelAndView modelAndView) {
+        User user = userService.findByEmail(principal.getName());
+        String moduleId = httpServletRequest.getParameter("moduleId");
+
+        long module_id = Long.parseLong(moduleId);
+        Module module = moduleService.getModulebyId(module_id);
+        String moduleName=module.getModuleName();
+        Double myscore = moduleTestService.getScore(httpServletRequest);
+
+        ModuleTest moduleTest = new ModuleTest();
+        moduleTest.setUserId(user.getUserId());
+        moduleTest.setModuleId(module_id);
+        moduleTest.setScore(myscore);
+        moduleTestService.saveTestResults(moduleTest);
+
+        modelAndView.addObject("question",questionService.getRandomQuestions(httpServletRequest));
+        modelAndView.addObject("newList", moduleTestService.getWrongAnswers(httpServletRequest));
+        modelAndView.addObject("trueList", moduleTestService.getCorrect(httpServletRequest));
+        modelAndView.addObject("moduleName",moduleName);
+
+        modelAndView.addObject("type", "hidden");
+        modelAndView.addObject("visibility", "hide");
+        modelAndView.setViewName("module_test");
+        return moduleTestService.handleResults(user.getUserId(),myscore,module_id,modelAndView);
+
+
+
+
+    }
+
+    @GetMapping(value = "/testList")
+    public ModelAndView getTestList(ModelAndView modelAndView) {
+        modelAndView.addObject("modules", moduleService.getAllModules());
+        modelAndView.setViewName("test_list");
+        return modelAndView;
+    }
+
+
+
+
 }

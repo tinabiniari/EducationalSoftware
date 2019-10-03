@@ -26,18 +26,15 @@ public class ProgressController {
     @Autowired
     ModuleTestService moduleTestService;
 
+
+
     @GetMapping(value = "/myProgress")
     public ModelAndView getProgress(Principal principal, ModelAndView modelAndView, @ModelAttribute("progress")Progress progress, @ModelAttribute("moduleTest")ModuleTest moduleTest){
         User user=userService.findByEmail(principal.getName());
         ArrayList list=progressService.getProgress(user.getUserId());
-        ArrayList<Object> list1=new ArrayList<>();
-        for (int i = 0; i <list.size() ; i++) {
-            list1.add(((Object[])list.get(i))[1]);
-        }
 
         modelAndView.addObject("test",moduleTestService.getCompletedTest(user.getUserId()));
-
-        modelAndView.addObject("progress",list1);
+        modelAndView.addObject("list",list);
 
         modelAndView.setViewName("progress");
         return modelAndView;

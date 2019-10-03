@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Help Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light  ">
+    <a class="icon navbar-brand" th:href="@{/index}"><img border="0" alt="W3Schools" src="/css/logo.png" width="50" height="60" style="margin: 10px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/index}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/modules}">Courses</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/testList}">Tests</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/myProgress}">My Progress</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/help}">Help</a>
+            </li>
+        </ul>
+
+
+    </div>
+</nav>
+
+<br>
+<br>
+<div>
+<h1 class="my-title display-4 text-muted">
+    <span>Help Page</span></h1>
+</div>
+
+<div class="container">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-help" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        &#9654; What is Java Educational Software?
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    Java Educational Software is an online software,where you can learn the basic fundamentals in Java by reading our courses and taking our online tests.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-help collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        &#9654; How can I start learning Java?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    As long as you are registered in our system, you can start learning Java, by clicking <b>List of Java Modules</b>,choose one of the modules by clicking on <b>List of Courses</b> and choose one of the available courses.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-help collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        &#9654; How does the software work?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    At the end of every course, there is a test, so you can check what you learned.If you pass this test, the next course will be unlocked and you will be able to continue with the next course.
+                    You cannot continue, if you do not pass this test.At the end of every module, you will be redirected to the test of this module.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-help collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        &#9654; How can I check my level at Java?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+                    In the section Tests, you can take a test for every module.Every test contains 10 questions. If you score 50% or more, you pass the test.If you score less than 50%, you don't pass the test and you have to study again and unlock again the courses of this module.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                    <button class="btn btn-link btn-help collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        &#9654; How can I see my results in test?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                <div class="card-body">
+                    In the main page, you can check in the progress bar how many courses you have unlocked/passed and how many tests you have succesfuly score.
+                    Also, you can check it in the section <b>Progress</b>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header" id="headingSix">
+            <h5 class="mb-0">
+                <button class="btn btn-link btn-help collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    &#9654; How can I see my Progress?
+                </button>
+            </h5>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+            <div class="card-body">
+                By clicking on the section <b>Progress</b> from the main Page, or the navigation bar, you can see your progress.
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+
+</body>
+</html>

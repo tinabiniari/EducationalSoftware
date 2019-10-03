@@ -12,11 +12,11 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course,Long> {
     List<Course> findCourseByModuleId(Long moduleId, Sort sort);
 
-    public Integer countByCourseId(Long courseId);
-
 
     @Query(nativeQuery = true, value ="SELECT COUNT(course_id) FROM course where module_id=?")
     public Integer countCourseByModuleId(Long module_id);
+
+
 
 
 
